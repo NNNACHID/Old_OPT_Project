@@ -1,0 +1,7 @@
+
+<form method="POST">
+    {% csrf_token %}
+    <p>{{ user.description }}</p>
+    <button hx-post="{% url 'delete_user' user.pk %}" hx-target="closest form" hx-swap="outerHTML"
+    type="submit">Delete</button>
+</form>
