@@ -1,48 +1,28 @@
 from django.db import models
 from django.utils.text import slugify
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
-class UserProfile(models.Model):
-    USER_ROLES = [
-        ("creator", "Content Creator"),
+class CustomUser(AbstractUser):
+
+    USER_TYPE_CHOICES = (
+        ("creator", "Creator"),
         ("advertiser", "Advertiser"),
-    ]
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.CharField(max_length=20, choices=USER_ROLES)
+        ("association", "Association"),
+    )
+    user_type = models.CharField(max_length=14, choices=USER_TYPE_CHOICES)
+    description = models.TextField(
+        verbose_name="Description",
+        help_text="Enter a description for your model",
+        null=True,
+        blank=True,
+    )
 
+    def is_creator(self):
+        return self.user_type == "creator"
 
-class ContentCreator(models.Model):
-    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    # Ajoutez d'autres champs spécifiques au créateur de contenu
+    def is_advertiser(self):
+        return self.user_type == "advertiser"
 
-
-class Sponsor(models.Model):
-    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    # Ajoutez d'autres champs spécifiques au sponsor
-
-
-# class Category(models.Model):
-#     name = models.CharField(max_length=60)
-#     slug = models.SlugField(blank=True)
-
-#     @classmethod
-#     def get_default_category(category):
-#         default_category, _ = category.objects.get_or_create(name="Default", slug="_default")
-#         return default_category
-
-#     def __str__(self):
-#         return self.name
-
-#     def save(self, *args, **kwargs):
-#         self.slug = self.slug or slugify(self.name)
-#         super().save(*args, **kwargs)
-
-# class User(models.Model):
-#     name = models.CharField(max_length=128)
-#     description = models.TextField(blank=True)
-#     thumbnail = models.ImageField(upload_to="users_thumbnail", blank=True, null=True)
-#     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return self.description
+    def is_association(self):
+        return self.user_type == "association"
