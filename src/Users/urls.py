@@ -8,4 +8,5 @@ urlpatterns = [
     path("creators_list/", get_creators_list, name="creators_list"),
     path("advertisers_list/", get_advertisers_list, name="advertisers_list"),
     path("associations_list/", get_associations_list, name="associations_list"),
+    path("profile/<int:user_id>/", get_profile, name="profile"),
 ]

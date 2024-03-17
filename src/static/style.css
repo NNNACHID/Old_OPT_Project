@@ -19,6 +19,7 @@ a.nav-link {
   font-size: 21px;
   color: #22c45e !important;
 }
+
 #main{
     background-color: bisque;
     height: 100%;
@@ -30,4 +31,14 @@ a.nav-link {
   font-weight: 400;
   font-style: normal;
   color: #22c45e;
+}
+
+#subscription-form {
+  background-color: #22c45e !important;
+  color: #F0FDF5 !important;
+}
+
+
+#profile_header {
+  background-size: cover;
 }
