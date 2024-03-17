@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="row" id="profile_header" >
     <img src="{{ profile.banner.url }}" class="img-fluid" alt="...">
     <ul>
         <li>{{ user.username }}</li>
         <li>{{ user.email }}</li>
+        <li>{{ profile.name }}</li>
+        <li>{{ profile.banner }}</li>
         
     </ul>
 </div>

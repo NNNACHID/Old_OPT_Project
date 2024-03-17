@@ -25,6 +25,7 @@ class CustomUser(AbstractUser):
 
 class CustomUserProfile(models.Model):
 
+    name = models.CharField(max_length=255, unique=True, default="SOME STRING")
     social_links = models.JSONField(default=dict)
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
     main_description = models.TextField(
@@ -35,5 +36,4 @@ class CustomUserProfile(models.Model):
     )
     partners = models.JSONField(default=dict)
     campaigns = models.JSONField(default=dict)
-    banner = models.ImageField(upload_to='banners/', blank=True, null=True, default='images/default_banner.jpg')
-
+    banner = models.ImageField(upload_to='banners/', blank=True, null=True, default='static/images/default_banner.jpg')
