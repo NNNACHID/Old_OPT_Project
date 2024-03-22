@@ -4,9 +4,11 @@ from Users.views import *
 app_name = "users"
 
 urlpatterns = [
-    path("register/", register, name="register"),
-    path("creators_list/", get_creators_list, name="creators_list"),
-    path("advertisers_list/", get_advertisers_list, name="advertisers_list"),
-    path("associations_list/", get_associations_list, name="associations_list"),
+    path("register/", register_user, name="register"),
+    path("login/", login_user, name="login"),
+    path("logout/", logout_user, name="logout"),
+    path("creators_list/", get_users_list_by_type, name="creators"),
+    path("advertisers/", get_users_list_by_type, name="advertisers"),
+    path("associations/", get_users_list_by_type, name="associations"),
     path("profile/<int:user_id>/", get_profile, name="profile"),
 ]

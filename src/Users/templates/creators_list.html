@@ -2,20 +2,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="row text-center py-5">
 <h2>Liste des créateurs</h2>
+</div>
+
 <div class="row">
     {% for user in users %}
-    {% if user.user_type == "creator" %}
-    <div class="col-md-4 mb-3">
+    <div class="col-md-4 mb-3 mx-auto">
         <a href="{% url 'users:profile' user.id %}">
-            <div class="card">
+            <div class="card mx-5 shadow-lg">
+                <img src="{{ user.customuserprofile.banner.url }}" class="card-img-top" alt="...">
+                <!-- <img src="{{ user.customuserprofile.profile_picture.url}}" alt="img-thumbnail"
+                    class="img-thumbnail rounded-circle position-absolute top-100 start-50 translate-middle shadow"
+                    id="profile_picture"> -->
                 <div class="card-body">
                     <h5 class="card-title">{{ user.username }}</h5>
                 </div>
             </div>
         </a>
     </div>
-    {% endif %}
     {% empty %}
     <p>No users found</p>
     {% endfor %}

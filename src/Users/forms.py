@@ -33,4 +33,4 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUserProfile
-        fields = ('banner',)
+        fields = ('banner', 'profile_picture')

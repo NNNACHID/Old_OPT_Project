@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
         ("association", "Association"),
     )
     user_type = models.CharField(max_length=14, choices=USER_TYPE_CHOICES)
-    
+
     def is_creator(self):
         return self.user_type == "creator"
 
@@ -22,6 +22,7 @@ class CustomUser(AbstractUser):
 
     def is_association(self):
         return self.user_type == "association"
+
 
 class CustomUserProfile(models.Model):
 
@@ -36,4 +37,15 @@ class CustomUserProfile(models.Model):
     )
     partners = models.JSONField(default=dict)
     campaigns = models.JSONField(default=dict)
-    banner = models.ImageField(upload_to='banners/', blank=True, null=True, default='static/images/default_banner.jpg')
+    banner = models.ImageField(
+        upload_to="banners/",
+        blank=True,
+        null=True,
+        default="static/images/default_banner.jpg",
+    )
+    profile_picture = models.ImageField(
+        upload_to="profile_pictures/",
+        blank=True,
+        null=True,
+        default="static/images/profile_picture.jpg"
+    )

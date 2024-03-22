@@ -25,22 +25,24 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active opt-nav-link" aria-current="page"
-                        href="{% url 'users:creators_list' %}">Createurs</a>
+                        href="{% url 'users:creators' %}">Createurs</a>
                     <a class="nav-link active opt-nav-link" aria-current="page"
-                        href="{% url 'users:advertisers_list' %}">Annonceurs</a>
+                        href="{% url 'users:advertisers' %}">Annonceurs</a>
                     <a class="nav-link active opt-nav-link" aria-current="page"
-                        href="{% url 'users:associations_list' %}">Associations</a>
+                        href="{% url 'users:associations' %}">Associations</a>
                     <a class="nav-link active opt-nav-link" aria-current="page" href="#">Campagnes</a>
                 </div>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active opt-nav-link" aria-current="page" href="{% url 'users:register' %}">Inscription</a>
+                    <a class="nav-link active opt-nav-link" aria-current="page"
+                        href="{% url 'users:login' %}">Connexion</a>
+                        <a class="nav-link active opt-nav-link" aria-current="page" href="{% url 'users:register' %}">Inscription</a>
                 </div>
             </div>
         </div>
     </nav>
-    <div class="container" id="main">
+    <div class="" id="main">
         {% block content %}
         {% endblock %}
     </div>

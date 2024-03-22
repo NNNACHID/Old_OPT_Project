@@ -2,20 +2,17 @@
 
 {% block content %}
 
-<div class="row" id="profile_header" >
-    <img src="{{ profile.banner.url }}" class="img-fluid" alt="...">
-    <ul>
-        <li>{{ user.username }}</li>
-        <li>{{ user.email }}</li>
-        <li>{{ profile.name }}</li>
-        <li>{{ profile.banner }}</li>
-        
-    </ul>
+<div class="row position-relative mb-5" id="profile_header" >
+    <img src="{{ profile.banner.url }}" class="img-fluid h-100" alt="..." id="profile_banner">
+    <img src="{{profile.profile_picture.url}}" alt="img-thumbnail" class="img-thumbnail rounded-circle position-absolute top-100 start-50 translate-middle shadow" id="profile_picture">
+    
 </div>
-<div class="row">
-    <p>div 2</p>
-</div>
-<div class="row">
-    <p>div 3</p>
+<div class="row d-flex flex-column mt-5">
+    <div class="text-center mx-auto mt-5">
+        <h1>{{profile.name}}</h1>
+        <p>{{profile.main_description}}</p>
+        <button type="button" class="btn btn-success btn-lg shadow-lg">Collaborer</button>
+    </div>
+    
 </div>
 {% endblock %}

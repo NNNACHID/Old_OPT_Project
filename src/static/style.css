@@ -22,6 +22,7 @@ a.nav-link {
 
 #main{
     background-color: bisque;
+    font-family: "Lato", sans-serif;
     height: 100%;
     width: 100%;
 }
@@ -38,7 +39,11 @@ a.nav-link {
   color: #F0FDF5 !important;
 }
 
-
 #profile_header {
-  background-size: cover;
+  height: 360px;
+}
+
+#profile_picture {
+  height: 120px !important;
+  width: 150px !important;
 }
