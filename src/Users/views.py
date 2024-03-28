@@ -2,15 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import resolve
 from django.utils.html import escape
+from django.contrib import messages
 from django.contrib.auth import get_user_model, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 from Users.models import *
 from Users.forms import *
-
-# def index(request):
-#     context = {"users": CustomUser.objects.all()}
-#     return render(request, "creator_list.html", context)
 
 
 def register_user(request):
@@ -23,11 +21,21 @@ def register_user(request):
 
     return render(request, "register.html", {"form": form})
 
+
 def login_user(request):
     if request.method == "POST":
-        
-        username = request.POST["username"]
-        password = request.POST["password"]
+
+        form = CustomAuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("home")
+        else:
+            messages.info(request, "Données de connexion incorrectes")
+
+    form = CustomAuthenticationForm()
+    return render(request, "login.html", {"form": form})
 
 
 def logout_user(request):
@@ -35,19 +43,31 @@ def logout_user(request):
     return redirect("home")
 
 
-def get_profile(request, user_id):
-    user = get_object_or_404(CustomUser, id=user_id)
-    profile = get_object_or_404(CustomUserProfile, user=user)
-    context = {"profile": profile, "user": user}
+@login_required(login_url="login")
+def update_user(request):
+    user = request.user
+    profile = user.customuserprofile
+    user_form = CustomUserUpdateForm(request.POST or None, instance=user)
+    profile_form = CustomUserProfileForm(
+        request.POST or None, request.FILES, instance=profile
+    )
+    
+    if user_form.is_valid() and profile_form.is_valid():
+        user_form.save()
+        profile_form.save()
+        
+        messages.success(request, "User has been updated ! ")
+        return redirect('home')
+    return render(
+        request, "account.html", {"user_form": user_form, "profile_form": profile_form}
+    )
+
+
+def get_profile(request, pk):
+
+    profile = get_object_or_404(CustomUserProfile, user=pk)
+    context = {"profile": profile}
     return render(request, "profile.html", context)
-
-
-def set_profile(request, pk):
-
-    form = CustomUserProfileForm(data=request.POST)
-    if form.is_valid():
-        form.save()
-        return redirect("profile", pk=user.pk)
 
 
 def get_users_list(request):
@@ -55,16 +75,22 @@ def get_users_list(request):
     return render(request, "creators_list.html", context)
 
 
-def get_users_list_by_type(request):
+def get_profile_list_by_type(request):
 
     url_name = resolve(request.path_info).url_name
 
     if url_name == "creators":
-        context = {"users": CustomUser.objects.filter(user_type="creator")}
+        context = {
+            "profiles": CustomUserProfile.objects.filter(user__user_type="creator")
+        }
         return render(request, "creators_list.html", context)
     elif url_name == "advertisers":
-        context = {"users": CustomUser.objects.filter(user_type="advertiser")}
+        context = {
+            "profiles": CustomUserProfile.objects.filter(user__user_type="advertiser")
+        }
         return render(request, "advertisers_list.html", context)
     else:
-        context = {"users": CustomUser.objects.filter(user_type="associations")}
+        context = {
+            "profiles": CustomUserProfile.objects.filter(user__user_type="association")
+        }
         return render(request, "associations_list.html", context)

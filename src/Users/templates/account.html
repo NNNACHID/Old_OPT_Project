@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row text-center py-5">
+    <h2>Hello {{ user.username }}</h2>
+</div>
+<div class="container d-flex justify-content-center align-items-center align-self-center">
+
+    <form method="post" enctype="multipart/form-data" class="my-form mt-5 p-5 rounded custom-bg-color w-50 text-center" id="custom-form">
+        {% csrf_token %}
+        {{ user_form.non_field_errors }}
+        {{ profile_form.non_field_errors }}
+        <div class="mb-3">
+            <label for="{{ user_form.username.id_for_label }}">Nom d'utilisateur :</label>
+            {{ user_form.username }}
+            {{ user_form.username.errors }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ user_form.email.id_for_label }}">Adresse email :</label>
+            {{ user_form.email }}
+            {{ user_form.email.errors }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ profile_form.profile_picture.id_for_label }}">Image de profil :</label>
+            {{ profile_form.profile_picture }}
+            {{ profile_form.profile_picture.errors }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ profile_form.banner.id_for_label }}">Bannière :</label>
+            {{ profile_form.banner }}
+            {{ profile_form.banner.errors }}
+        </div>
+        <button type="submit" class="btn bg-light" id="register-button">Enregistrer</button>
+    </form>
+</div>
+{% endblock %}

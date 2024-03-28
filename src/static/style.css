@@ -21,7 +21,6 @@ a.nav-link {
 }
 
 #main{
-    background-color: bisque;
     font-family: "Lato", sans-serif;
     height: 100%;
     width: 100%;
@@ -33,12 +32,20 @@ a.nav-link {
   font-style: normal;
   color: #22c45e;
 }
-
-#subscription-form {
+ /*************FORMS************* */
+#custom-form {
   background-color: #22c45e !important;
   color: #F0FDF5 !important;
 }
 
+
+#register-button{
+  border: 3px solid #F0FDF5 !important;
+  color: #F0FDF5 !important;
+  background-color: #22c45e !important;
+}
+
+/************PROFILE*************** */
 #profile_header {
   height: 360px;
 }

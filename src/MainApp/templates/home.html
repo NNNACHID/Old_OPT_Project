@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% for message in messages %}
+<div class="alert alert-warning" role="alert">
+    <h5>{{ message }}</h5>
+</div>
+{% endfor %}
 {% endblock %}

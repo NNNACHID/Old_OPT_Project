@@ -26,20 +26,42 @@
                 <div class="navbar-nav">
                     <a class="nav-link active opt-nav-link" aria-current="page"
                         href="{% url 'users:creators' %}">Createurs</a>
-                    <a class="nav-link active opt-nav-link" aria-current="page"
+                    <!-- <a class="nav-link active opt-nav-link" aria-current="page"
                         href="{% url 'users:advertisers' %}">Annonceurs</a>
                     <a class="nav-link active opt-nav-link" aria-current="page"
                         href="{% url 'users:associations' %}">Associations</a>
-                    <a class="nav-link active opt-nav-link" aria-current="page" href="#">Campagnes</a>
+                    <a class="nav-link active opt-nav-link" aria-current="page" href="#">Campagnes</a> -->
                 </div>
             </div>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            {% if user.is_authenticated %}
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <div class="dropdown d-flex align-items-center">
+                            <button class="btn btn-transparent dropdown-toggle p-0 border-0 w-50 ms-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span>
+                                    <img src="{{user.customuserprofile.profile_picture.url}}" alt="" class="img-thumbnail rounded-circle  w-25">
+                                </span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                            <ul class="list-unstyled">
+                                <li class-="nav-item"><a class="nav-link opt-nav-link" href="{% url 'users:account' %}">Settings</a></li>
+                                <li class-="nav-item"><a class="nav-link opt-nav-link" href="{% url 'users:logout' %}">Déconnexion</a></li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+            
+            <div class="collapse navbar-collapse justify-content-end p-3" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active opt-nav-link" aria-current="page"
-                        href="{% url 'users:login' %}">Connexion</a>
-                        <a class="nav-link active opt-nav-link" aria-current="page" href="{% url 'users:register' %}">Inscription</a>
+                    <ul class="nav nav-pills">
+                        <li class-="nav-item"><a class="nav-link opt-nav-link" aria-current="page" href="{% url 'users:login' %}">Connexion</a></li>
+                        <li class-="nav-item"><a class="nav-link opt-nav-link" aria-current="page" href="{% url 'users:register' %}">Inscription</a></li>
+                    </ul>
                 </div>
             </div>
+            {% endif %}
         </div>
     </nav>
     <div class="" id="main">
