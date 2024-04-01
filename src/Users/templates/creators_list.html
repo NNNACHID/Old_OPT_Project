@@ -1,29 +1,27 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
 <div class="row text-center py-5">
-<h2>Créateurs</h2>
+<h2 class="fw-bold fst-italic">Trouve un createur</h2>
 </div>
 
-<div class="row">
-    <div class="col-md-4 offset-md-4 h-50 mb-5">
-    <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+<div class="row justify-content-center">
+    <div class="col-md-4 mb-3">
+    <form class="mx-auto" role="search">
+        <input class="form-control" type="search" placeholder="" aria-label="Search">
     </form>
     </div>
     {% for profile in profiles %}
-    <div class="row">
-        <div class="col-md-3 offset-md-5 h-50">
-            
-        <a href="{% url 'users:profile' profile.user.pk %}">
-            <div class="card shadow-lg h-75">
-                <img src="{{ profile.banner.url }}" class="card-img-top h-50" alt="...">
-                <!-- <img src="{{ user.customuserprofile.profile_picture.url}}" alt="img-thumbnail"
-                    class="img-thumbnail rounded-circle position-absolute top-100 start-50 translate-middle shadow"
-                    id="profile_picture"> -->
-                <div class="card-body">
-                    <h5 class="card-title">{{ profile.name }}</h5>
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-3">
+        <a href="{% url 'users:profile' profile.user.pk %}" class="text-decoration-none">
+            <div class="card shadow-lg">
+                <img src="{{ profile.banner.url }}" class="card-img-top user-card" alt="...">
+                <img src="{{ profile.profile_picture.url}}" alt="img-thumbnail"
+                    class="rounded-circle position-absolute top-50 start-0 translate-middle-y ml-5 shadow user-thumbnail"
+                    >
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold fst-italic text-uppercase">{{ profile.name }}</h5>
                 </div>
             </div>
         </a>

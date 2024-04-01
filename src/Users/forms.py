@@ -27,7 +27,7 @@ class CustomUserCreationForm(UserCreationForm):
     )
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = [
             "user_type",
             "username",
@@ -57,7 +57,7 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserUpdateForm(UserChangeForm):
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ["username", "email"]
 
         widgets = {
@@ -76,13 +76,14 @@ class CustomUserUpdateForm(UserChangeForm):
 class CustomUserProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUserProfile
-        fields = ("banner", "profile_picture")
+        fields = ["banner", "profile_picture", "main_description"]
 
         widgets = {
             "banner": forms.FileInput(attrs={"class": "form-control", "type": "file"}),
             "profile_picture": forms.FileInput(
                 attrs={"class": "form-control", "type": "file"}
             ),
+            "main_description": forms.Textarea(attrs={"class": "form-control", "rows": "3"})
         }
 
 

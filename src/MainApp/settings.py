@@ -34,13 +34,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'Users.apps.UsersConfig',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "Users.apps.UsersConfig",
+    "Campaigns.apps.CampaignsConfig",
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, "templates"),
             os.path.join(BASE_DIR, "MainApp", "templates"),
             os.path.join(BASE_DIR, "Users", "templates"),
+            os.path.join(BASE_DIR, "Campaigns", "templates"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {

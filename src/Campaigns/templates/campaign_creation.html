@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center align-self-center">
+    
+    <form method="post" enctype="multipart/form-data"
+        class="my-form mt-5 p-5 rounded custom-bg-color w-75 h-75 text-center" id="custom-form">
+        <h1 class="justify-content-start text-decoration-underline">Créez une campagne</h1>
+        {% csrf_token %}
+        <div class="row justify-content-center ">
+            <div class="col-6 my-auto w-75">
+                <div class="mb-3 w-75 m-auto">
+                    <label for="{{ form.name.id_for_label }}"></label>
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                </div>
+                <div class="mb-3 w-75 m-auto">
+                    <label for="{{ form.start_date.id_for_label }}"></label>
+                    {{ form.start_date }}
+                    {{ form.start_date.errors }}
+                </div>
+                <div class="mb-3 w-75 m-auto">
+                    <label for="{{ form.end_date.id_for_label }}"></label>
+                    {{ form.end_date }}
+                    {{ form.end_date.errors }}
+                </div>
+
+                <div class="mb-3 w-75 mx-auto">
+                    <label for="{{ form.description.id_for_label }}"></label>
+                    {{ form.description }}
+                    {{ form.description.errors }}
+                </div>
+                <div class="mb-3 w-75 mx-auto">
+                    <label for="{{ form.budget.id_for_label }}"></label>
+                    {{ form.budget }}
+                    {{ form.budget.errors }}
+                </div>
+                <button type="submit" class="btn bg-light" id="register-button">Enregistrer</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+{% endblock %}

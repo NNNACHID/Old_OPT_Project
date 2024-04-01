@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from django.forms import JSONField
-from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser
 
 
@@ -14,14 +13,6 @@ class CustomUser(AbstractUser):
     )
     user_type = models.CharField(max_length=14, choices=USER_TYPE_CHOICES)
 
-    def is_creator(self):
-        return self.user_type == "creator"
-
-    def is_advertiser(self):
-        return self.user_type == "advertiser"
-
-    def is_association(self):
-        return self.user_type == "association"
 
 
 class CustomUserProfile(models.Model):
@@ -36,15 +27,14 @@ class CustomUserProfile(models.Model):
         blank=True,
     )
     partners = models.JSONField(default=dict)
-    campaigns = models.JSONField(default=dict)
     banner = models.ImageField(
-        upload_to="banners/",
+        upload_to="static/banners/",
         blank=True,
         null=True,
         default="static/images/default_banner.jpg",
     )
     profile_picture = models.ImageField(
-        upload_to="profile_pictures/",
+        upload_to="static/profile_pictures/",
         blank=True,
         null=True,
         default="static/images/profile_picture.jpg"

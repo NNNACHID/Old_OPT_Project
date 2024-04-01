@@ -8,11 +8,13 @@
     
 </div>
 <div class="row d-flex flex-column mt-5">
-    <div class="text-center mx-auto mt-5">
+    <div class="col-3"></div>
+    <div class="col-6 text-center mx-auto mt-5">
         <h1>{{profile.name}}</h1>
+        <p>{{profile.social_links}}</p>
         <p>{{profile.main_description}}</p>
         <button type="button" class="btn btn-success btn-lg shadow-lg">Collaborer</button>
     </div>
-    
+    <div class="col-3"></div>
 </div>
 {% endblock %}

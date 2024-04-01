@@ -8,41 +8,138 @@ body {
   width: 100vw;
 }
 
-nav {
-  background-color: #F0FDF5;
+/* *******NAV********* */
+.navbar {
+  background-color: #f0fdf5;
+  height: 90px;
+  margin: 21px;
+  border-radius: 18px;
+  padding: 0.6rem;
+}
+.navbar-brand {
+  font-weight: 390;
+  color: #37db73;
+  font-size: 33px;
+  transition: 0.3s ease-in-out;
+  font-family: "Monoton", sans-serif;
+  font-style: normal;
 }
 
-a.nav-link {
+.navbar-brand:hover {
+  color: #22c45e;
+}
+
+.nav-link {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 21px;
-  color: #22c45e !important;
+  color: #37db73;
+  position: relative;
 }
 
-#main{
-    font-family: "Lato", sans-serif;
-    height: 100%;
-    width: 100%;
-}
-#main_logo {
-  font-family: "Monoton", sans-serif;
-  font-size: 42px;
-  font-weight: 400;
-  font-style: normal;
+.nav-link:hover,
+.nav-link.active {
   color: #22c45e;
 }
- /*************FORMS************* */
-#custom-form {
-  background-color: #22c45e !important;
-  color: #F0FDF5 !important;
+
+@media (min-width: 990px) {
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: #22c45e;
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+  }
+
+  .nav-link:hover::before,
+  .nav-link.active::before {
+    width: 100%;
+    visibility: visible;
+  }
 }
 
+.login-button {
+  background-color: #22c45e;
+  font-family: "Lato", sans-serif;
+  color: ghostwhite;
+  font-size: 18px;
+  padding: 6px 18px;
+  border-radius: 48px;
+  transition: 0.3s background-color;
+}
 
-#register-button{
-  border: 3px solid #F0FDF5 !important;
-  color: #F0FDF5 !important;
+.login-button:hover {
+  background-color: #37db73;
+}
+
+.navbar-toggler {
+  border: none;
+  font-size: 1.25rem;
+}
+
+.navbar-toggler:focus,
+.btn-close:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/********MAIN*********/
+#main {
+  background: url("images/dose-media-jxslQxviEJ0-unsplash.jpg") no-repeat center;
+  background-size: cover;
+  font-family: "Lato", sans-serif;
+  width: 100%;
+}
+
+#main .container {
+  height: 100vh;
+  z-index: 1;
+  position: relative;
+}
+
+#main::before {
+  background-color: rgba(61, 61, 61, 0.6);
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#main h1 {
+  font-family: "Monoton", sans-serif;
+  font-style: normal;
+  font-size: 3em;
+}
+
+/*************FORMS************* */
+#custom-form {
   background-color: #22c45e !important;
+  color: #f0fdf5 !important;
+}
+
+#register-button {
+  border: 3px solid #f0fdf5 !important;
+  color: #f0fdf5 !important;
+  background-color: #22c45e !important;
+}
+
+/************ USERS LIST ****************/
+
+.user-card {
+  max-height: 90px !important;
+}
+
+.user-thumbnail {
+  height: 90px !important;
+  width: 90px !important;
 }
 
 /************PROFILE*************** */

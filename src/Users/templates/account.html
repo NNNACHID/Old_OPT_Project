@@ -21,6 +21,11 @@
             {{ user_form.email.errors }}
         </div>
         <div class="mb-3">
+            <label for="{{ profile_form.profile_picture.id_for_label }}">Description :</label>
+            {{ profile_form.main_description }}
+            {{ profile_form.main_description.errors }}
+        </div>
+        <div class="mb-3">
             <label for="{{ profile_form.profile_picture.id_for_label }}">Image de profil :</label>
             {{ profile_form.profile_picture }}
             {{ profile_form.profile_picture.errors }}

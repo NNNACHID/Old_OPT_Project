@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.views.decorators.http import require_POST, require_http_methods
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import resolve
 from django.utils.html import escape
@@ -11,17 +12,23 @@ from Users.models import *
 from Users.forms import *
 
 
-def register_user(request):
-    form = CustomUserCreationForm(data=request.POST)
-    if request.method == "POST":
+# FROMS METHODS
 
+
+@require_http_methods(["GET", "POST"])
+def register_user(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect("home")
+    else:
+        form = CustomUserCreationForm()
 
     return render(request, "register.html", {"form": form})
 
 
+@require_http_methods(["GET", "POST"])
 def login_user(request):
     if request.method == "POST":
 
