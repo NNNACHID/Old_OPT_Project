@@ -17,7 +17,9 @@ class Campaign(models.Model):
         help_text=_("Budget in your currency"),
     )
     campaign_creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='created_campaigns')
-    # collaborater = models.ManyToManyField(CustomUser, through="Collaboraters")
+    collaborators = models.ManyToManyField(
+        CustomUser, related_name="campaigns_participated"
+    )
 
     class Meta:
         verbose_name = _("Campaign")

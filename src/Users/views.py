@@ -54,17 +54,22 @@ def logout_user(request):
 def update_user(request):
     user = request.user
     profile = user.customuserprofile
-    user_form = CustomUserUpdateForm(request.POST or None, instance=user)
-    profile_form = CustomUserProfileForm(
-        request.POST or None, request.FILES, instance=profile
-    )
-    
-    if user_form.is_valid() and profile_form.is_valid():
-        user_form.save()
-        profile_form.save()
-        
-        messages.success(request, "User has been updated ! ")
-        return redirect('home')
+    if request.method == "POST":
+
+        user_form = CustomUserUpdateForm(request.POST or None, instance=user)
+        profile_form = CustomUserProfileForm(
+            request.POST or None, request.FILES, instance=profile
+        )
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+
+            messages.success(request, "User has been updated ! ")
+            return redirect("home")
+    else:
+        user_form = CustomUserUpdateForm(instance=user)
+        profile_form = CustomUserProfileForm(instance=profile)
     return render(
         request, "account.html", {"user_form": user_form, "profile_form": profile_form}
     )

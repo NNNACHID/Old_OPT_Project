@@ -14,15 +14,19 @@ class CustomUser(AbstractUser):
     user_type = models.CharField(max_length=14, choices=USER_TYPE_CHOICES)
 
 
-
 class CustomUserProfile(models.Model):
 
     name = models.CharField(max_length=255, unique=True, default="SOME STRING")
-    social_links = models.JSONField(default=dict)
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
+    short_description = models.TextField(
+        verbose_name="Short description",
+        help_text="Enter a short description",
+        null=True,
+        blank=True,
+    )
     main_description = models.TextField(
         verbose_name="Description",
-        help_text="Enter a description for your model",
+        help_text="Enter a description",
         null=True,
         blank=True,
     )
@@ -37,5 +41,24 @@ class CustomUserProfile(models.Model):
         upload_to="static/profile_pictures/",
         blank=True,
         null=True,
-        default="static/images/profile_picture.jpg"
+        default="static/images/profile_picture.jpg",
+    )
+    instagram_url = models.URLField(
+        max_length=255, null=True, blank=True, verbose_name="instagram"
+    )
+    x_url = models.URLField(max_length=255, null=True, blank=True, verbose_name="x")
+    youtube_channel_url = models.URLField(
+        max_length=255, null=True, blank=True, verbose_name="youtube"
+    )
+    twitch_url = models.URLField(
+        max_length=255, null=True, blank=True, verbose_name="twitch"
+    )
+    tiktok_url = models.URLField(
+        max_length=255, null=True, blank=True, verbose_name="tiktok"
+    )
+    snapchat_url = models.URLField(
+        max_length=255, null=True, blank=True, verbose_name="snapchat"
+    )
+    contact_mail = models.EmailField(
+        max_length=255, null=True, blank=True, verbose_name="Adresse e-mail"
     )

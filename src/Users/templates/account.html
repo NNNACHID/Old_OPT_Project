@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row text-center py-5">
-    <h2>Hello {{ user.username }}</h2>
-</div>
-<div class="container d-flex justify-content-center align-items-center align-self-center">
+<div class="container form-container d-flex justify-content-center align-items-center align-self-center mb-5">
 
-    <form method="post" enctype="multipart/form-data" class="my-form mt-5 p-5 rounded custom-bg-color w-50 text-center" id="custom-form">
+    <form method="post" enctype="multipart/form-data"
+        class="my-form mt-5  p-5 rounded w-50 text-center shadow-lg custom-form-card ">
         {% csrf_token %}
         {{ user_form.non_field_errors }}
         {{ profile_form.non_field_errors }}
-        <div class="mb-3">
+        <div class="mb-3rounded">
             <label for="{{ user_form.username.id_for_label }}">Nom d'utilisateur :</label>
             {{ user_form.username }}
             {{ user_form.username.errors }}
@@ -21,7 +19,12 @@
             {{ user_form.email.errors }}
         </div>
         <div class="mb-3">
-            <label for="{{ profile_form.profile_picture.id_for_label }}">Description :</label>
+            <label for="{{ profile_form.short_description.id_for_label }}">Description :</label>
+            {{ profile_form.short_description }}
+            {{ profile_form.short_description.errors }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ profile_form.main_description.id_for_label }}">Description :</label>
             {{ profile_form.main_description }}
             {{ profile_form.main_description.errors }}
         </div>
@@ -35,6 +38,32 @@
             {{ profile_form.banner }}
             {{ profile_form.banner.errors }}
         </div>
+        <div class="mb-3 rounded">
+            <label for="{{ user_form.instagram_url.id_for_label }}"></label>
+            {{ profile_form.instagram_url }}
+            {{ profile_form.instagram_url.errors }}
+        </div>
+        <div class="mb-3 rounded">
+            <label for="{{ profile_form.x_url.id_for_label }}"></label>
+            {{ profile_form.x_url }}
+            {{ profile_form.x_url.errors }}
+        </div>
+        <div class="mb-3 rounded">
+            <label for="{{ profile_form.youtube_channel_url.id_for_label }}"></label>
+            {{ profile_form.youtube_channel_url }}
+            {{ profile_form.youtube_channel_url.errors }}
+        </div>
+        <div class="mb-3 rounded">
+            <label for="{{ profile_form.twitch_url.id_for_label }}"></label>
+            {{ profile_form.twitch_url }}
+            {{ profile_form.twitch_url.errors }}
+        </div>
+        <div class="mb-3 rounded">
+            <label for="{{ profile_form.tiktok_url.id_for_label }}"></label>
+            {{ profile_form.tiktok_url }}
+            {{ profile_form.tiktok_url.errors }}
+        </div>
+
         <button type="submit" class="btn bg-light" id="register-button">Enregistrer</button>
     </form>
 </div>

@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods, require_GET, require_POST
 from django.contrib import messages
 
+from Campaigns.models import Campaign
 from Campaigns.forms import CampaignCreationForm
 
 
@@ -30,9 +31,14 @@ def create_campaign(request):
     match http_method:
         case "GET":
             return get_campaign_creation_form(request)
-            
+
         case "POST":
             return submit_campaign_creation_form(request)
+
+
+def get_users_list(request):
+    context = {"users": Campaign.objects.all()}
+    return render(request, "campaigns_list.html", context)
 
 
 # @require_http_methods(["GET", "POST"])

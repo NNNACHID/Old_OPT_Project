@@ -76,14 +76,80 @@ class CustomUserUpdateForm(UserChangeForm):
 class CustomUserProfileForm(forms.ModelForm):
     class Meta:
         model = CustomUserProfile
-        fields = ["banner", "profile_picture", "main_description"]
+        fields = [
+            "banner",
+            "profile_picture",
+            "short_description",
+            "main_description",
+            "instagram_url",
+            "x_url",
+            "youtube_channel_url",
+            "twitch_url",
+            "tiktok_url",
+            "snapchat_url",
+            "contact_mail",
+        ]
 
         widgets = {
             "banner": forms.FileInput(attrs={"class": "form-control", "type": "file"}),
             "profile_picture": forms.FileInput(
                 attrs={"class": "form-control", "type": "file"}
             ),
-            "main_description": forms.Textarea(attrs={"class": "form-control", "rows": "3"})
+            "short_description": forms.Textarea(
+                attrs={"class": "form-control", "rows": "1"}
+            ),
+            "main_description": forms.Textarea(
+                attrs={"class": "form-control", "rows": "3"}
+            ),
+            "instagram_url": forms.URLInput(
+                attrs={
+                    "placeholder": "Instagram",
+                    "class": "form-control",
+                    "type": "url",
+                }
+            ),
+            "x_url": forms.URLInput(
+                attrs={
+                    "placeholder": "X",
+                    "class": "form-control",
+                    "type": "url",
+                }
+            ),
+            "youtube_channel_url": forms.URLInput(
+                attrs={
+                    "placeholder": "Chaîne youtube",
+                    "class": "form-control",
+                    "type": "url",
+                }
+            ),
+            "twitch_url": forms.URLInput(
+                attrs={
+                    "placeholder": "Twitch",
+                    "class": "form-control",
+                    "type": "url",
+                }
+            ),
+            "tiktok_url": forms.URLInput(
+                attrs={
+                    "placeholder": "Tiktok",
+                    "class": "form-control",
+                    "type": "url",
+                }
+            ),
+            "snapchat_url": forms.URLInput(
+                attrs={
+                    "placeholder": "Snapchat",
+                    "class": "form-control",
+                    "type": "url",
+                }
+            ),
+            "contact_mail": forms.EmailInput(
+                attrs={
+                    "placeholder": "Email de contact",
+                    "class": "form-control",
+                    "type": "email",
+                }
+            ),
         }
 
 
