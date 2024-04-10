@@ -1,35 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 
-<div class="container content-container d-flex justify-content-center align-items-center align-self-center">
+<div class="container content-container d-flex justify-content-center align-items-center">
 
-    <form method="post" class="my-form p-5 rounded custom-form-card w-50 text-center" id="custom-form">
-        <h2>Inscrivez-vous</h2>
-        <br>
-
-        {% csrf_token %}
-        {% for field in form %}
-        <div class="mb-4 mx-3">
-            {% if field.name == 'password1' or field.name == 'password2' %}
-            <input type="password" class="form-control" name="{{ field.name }}" placeholder="{{ field.label }}"
-                required>
-            {% elif field.name == 'user_type' %}
-            {% for choice in field.field.choices %}
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="{{ field.name }}" id="{{ choice.0 }}"
-                    value="{{ choice.0 }}">
-                <label class="form-check-label" for="{{ choice.0 }}">{{ choice.1 }}</label>
+    <div class="row border-0 rounded-5 shadow p-3 box-area mx-1">
+        <div class="col-md-6 left-box rounded-4 d-flex justify-content-center align-items-center flex-column banner-container">
+            <div class="form-banner mb-3">
+                <img src="{% static '/images/—Pngtree—hand drawn black line drawing_5062114.png' %}" class="img-fluid" alt="" style="width: 240px">
+            </div>
+            <p class="text-white fs-1">Bienvenue !</p>
+            <small class="text-white text-wrap text-center fs-4 mb-1">Inscrivez-vous et commencer votre recherche de collaborations</small>
+        </div>
+        <div class="col-md-6 right-box custom-form">
+            <form method="post" class="p-5 text-center">
+            <h2>Inscription</h2>
+            <br>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="input-group mb-3 ">
+                {% if field.name == 'password1' or field.name == 'password2' %}
+                <input type="password" class="form-control" name="{{ field.name }}" placeholder="{{ field.label }}" required>
+                {% elif field.name == 'user_type' %}
+                {% for choice in field.field.choices %}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="{{ field.name }}" id="{{ choice.0 }}"
+                        value="{{ choice.0 }}">
+                    <label class="form-check-label" for="{{ choice.0 }}">{{ choice.1 }}</label>
+                </div>
+                {% endfor %}
+                {% else %}
+                {{ field }}
+                {% endif %}
             </div>
             {% endfor %}
-            {% else %}
-            {{ field }}
-            {% endif %}
+            <div class="mb-3 d-flex justify-content-center ">
+                <button type="submit" class="btn text-decoration-none register-button rounded">S'inscrire</button>
+            </div>
+            </form>
         </div>
-        {% endfor %}
-        <div class="mb-3 d-flex justify-content-center">
-            <button type="submit" class="btn bg-light" id="register-button">S'inscrire</button>
-        </div>
-    </form>
+    </div>
+
+    
 </div>
 {% endblock %}

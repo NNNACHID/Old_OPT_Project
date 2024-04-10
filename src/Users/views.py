@@ -1,10 +1,9 @@
-from django.http import HttpResponse
-from django.views.decorators.http import require_POST, require_http_methods
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import resolve
-from django.utils.html import escape
 from django.contrib import messages
-from django.contrib.auth import get_user_model, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 
@@ -106,3 +105,5 @@ def get_profile_list_by_type(request):
             "profiles": CustomUserProfile.objects.filter(user__user_type="association")
         }
         return render(request, "associations_list.html", context)
+
+

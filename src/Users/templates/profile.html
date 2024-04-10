@@ -2,56 +2,61 @@
 
 {% block content %}
 {% load static %}
-<div class="container-fluid content-container w-50">
-    <div class="user-profile-card shadow-lg rounded">
-        <div class="banner"><img src="{{ profile.banner.url }}" class="img-fluid" alt="..." id=""></div>
-        <div class="profile-picture"><img src="{{ profile.profile_picture.url }}" alt="img-thumbnail"
-                class=" rounded-circle z-index-1 mx-auto shadow-sm" id="">
-        </div>
-        <div class="profile-description text-center p-3">
-            <h1>{{profile.name}}</h1>
-            <div class="row">
-                {% if profile.instagram_url %}
-                <div class="col">
-                    <a href="{{profile.instagram_url}}">
-                        <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram">
-                    </a>
+<div class="container content-container text-center">
+    <div class="row mt-5 mb-5">
+        <div class="col align-self-center mt-5">
+            <div class="card shadow-lg border-0 rounded-5">
+                <img src="{{ profile.banner.url }}" class="card-img-top banner rounded-top-5" alt="...">
+                <img src="{{ profile.profile_picture.url }}" alt="img-thumbnail"
+                    class="img-thumbnail rounded-circle position-absolute top-50 start-50 translate-middle shadow w-25 h-25"
+                    id="profile_picture">
+                <div class="card-body mt-5">
+                    <h5 class="card-title">{{profile.name}}</h5>
+                    <div class="row">
+                        {% if profile.instagram_url %}
+                        <div class="col">
+                            <a href="{{profile.instagram_url}}">
+                                <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram">
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <p class="card-text">{{profile.short_description}}</p>
+                    <button type="button" class="btn btn-success btn-lg shadow-lg">Collaborer</button>
+                    <div></div>
                 </div>
-                {% endif %}
             </div>
-            <p>{{profile.main_description}}</p>
-            <button type="button" class="btn btn-success btn-lg shadow-lg ">Collaborer</button>
         </div>
-        
     </div>
-
-
-    <!-- 
-    <div class="row position-relative mb-5" id="profile_header">
-        <img src="{{ profile.banner.url }}" class="img-fluid h-100 w-100" alt="..." id="profile_banner">
-        <img src="{{ profile.profile_picture.url }}" alt="img-thumbnail"
-            class="img-thumbnail rounded-circle position-absolute top-100 start-50 translate-middle shadow"
-            id="profile_picture">
-
-    </div>
-    <div class="row d-flex flex-column mt-5 position-relative">
-        <div class="col-3"></div>
-        <div class="col-6 text-center mx-auto mt-5">
-            <h1>{{profile.name}}</h1>
-            <div class="row">
-                {% if profile.instagram_url %}
-                <div class="col">
-                    <a href="{{profile.instagram_url}}">
-                        <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram">
-                    </a>
+    <div class="row">
+        <div class="col" id="collaborations-content">
+            <div class="card border-0 shadow">
+                <h5 class="card-header">Collaborations</h5>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="#">Campagnes</a></li>
+                        <li><a href="#">Collaborateurs</a></li>
+                    </ul>
                 </div>
-                {% endif %}
             </div>
-            <p>{{profile.main_description}}</p>
-            <button type="button" class="btn btn-success btn-lg shadow-lg">Collaborer</button>
         </div>
-        <div class="col-3"></div>
+        <div class="col" id="main-description">
+            <div class="card border-0 shadow">
+                <h5 class="card-header">A propos</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">{{profile.main_description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col" id="advertisers-content">
+            <div class="card border-0 shadow">
+                <h5 class="card-header">Publicités</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                </div>
+            </div>
+        </div>
     </div>
-</div> -->
 
     {% endblock %}

@@ -13,3 +13,4 @@ urlpatterns = [
     path("profile/<int:pk>/", get_profile, name="profile"),
     path("account/", update_user, name="account"),
 ]
+
