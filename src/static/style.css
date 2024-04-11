@@ -1,12 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Monoton&display=swap");
 
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 body {
   background-color: #dadada;
-  margin: 0;
-  box-sizing: border-box;
-  height: 100vh;
   width: 100vw;
+  min-height: 100vh;
 }
 
 /*******************NAV*******************/
@@ -106,20 +112,11 @@ body {
 }
 
 /*******************MAIN*******************/
-#main {
+main {
   font-family: "Lato", sans-serif;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
 }
-
-/* #main::before {
-  background-color: rgba(61, 61, 61, 0.6);
-  content: "";
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-} */
 
 /*******************HOME*******************/
 
@@ -127,6 +124,7 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.253), rgba(0, 0, 0, 0.123)),
     url("images/dose-media-jxslQxviEJ0-unsplash.jpg") no-repeat center;
   background-size: cover;
+  min-height: 100vh;
   height: 100%;
   width: 100%;
 }
@@ -137,14 +135,12 @@ body {
   font-size: 3em;
 }
 
-.content-container {
-  height: 100%;
-  margin-top: 210px;
+.content-container { 
+  margin-top: 30px;
 }
 
 @media (min-width: 768px) {
   .content-container {
-    height: 100vh;
     margin-top: 36px;
     margin-bottom: 90px;
   }
@@ -168,9 +164,6 @@ body {
   width: 17rem;
 }
 
-.custom-form{
-  color: #22c45e;
-}
 
 .register-button {
   color: #f0fdf5;
@@ -184,8 +177,15 @@ body {
   color: #f0fdf5;
 }
 
-/************ USERS LIST ****************/
+.custom-form-card{
+  background-color: #f0fdf5;
+  color: #1f1f1f;
+}
 
+/************ USERS LIST ****************/
+.card-container{
+  background-color: #ffffff;
+}
 .user-card {
   max-height: 90px !important;
   background-color: #f0fdf5;
@@ -221,10 +221,6 @@ body {
   margin-top: -78px;
 }
 
-/* #profile_header {
-  height: 360px;
-} */
-
 #profile_picture {
   height: 90px !important;
   width: 120px !important;
@@ -232,6 +228,20 @@ body {
 
 .btn-success {
   background-color: #22c45e !important;
+}
+
+.card-header{
+  background-color: #f0fdf5;
+}
+
+.card-body img{
+  width: 150px;
+  height: 450px;
+}
+
+.social-logo{
+  max-height: 30px;
+  max-width: 30px;
 }
 /*******************FOOTER*******************/
 

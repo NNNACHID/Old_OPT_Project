@@ -3,8 +3,8 @@
 {% block content %}
 {% load static %}
 <div class="container content-container text-center">
-    <div class="row mt-5 mb-5">
-        <div class="col align-self-center mt-5">
+    <div class="row mt-5 mb-3 justify-content-center p-1">
+        <div class="col-md mt-5 p-1">
             <div class="card shadow-lg border-0 rounded-5">
                 <img src="{{ profile.banner.url }}" class="card-img-top banner rounded-top-5" alt="...">
                 <img src="{{ profile.profile_picture.url }}" alt="img-thumbnail"
@@ -12,11 +12,53 @@
                     id="profile_picture">
                 <div class="card-body mt-5">
                     <h5 class="card-title">{{profile.name}}</h5>
-                    <div class="row">
+                    <div class="row justify-content-center">
                         {% if profile.instagram_url %}
+                        <div class="col-md-1">
+                            <a href="{{profile.instagram_url}}">
+                                <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.x_url %}
+                        <div class="col-md-1">
+                            <a href="{{profile.x_url}}">
+                                <img src="{% static 'images/x.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.youtube_channel_url %}
+                        <div class="col-md-1">
+                            <a href="{{profile.youtube_channel_url}}">
+                                <img src="{% static 'images/youtube.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.twitch_url %}
+                        <div class="col-md-1">
+                            <a href="{{profile.twitch_url}}">
+                                <img src="{% static 'images/twitch.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.tiktok_url %}
+                        <div class="col-md-1">
+                            <a href="{{profile.instagram_url}}">
+                                <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.snapchat_url %}
                         <div class="col">
                             <a href="{{profile.instagram_url}}">
-                                <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram">
+                                <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.contact_mail %}
+                        <div class="col">
+                            <a href="{{profile.instagram_url}}">
+                            <i class="fa-regular fa-envelope"></i>
                             </a>
                         </div>
                         {% endif %}
@@ -28,10 +70,10 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col" id="collaborations-content">
-            <div class="card border-0 shadow">
-                <h5 class="card-header">Collaborations</h5>
+    <div class="row mb-5 p-1">
+        <div class="col-md-3 mb-3" id="collaborations-content">
+            <div class="card border-0 shadow rounded-4 ">
+                <h5 class="card-header rounded-top-4 shadow-sm border-0">Collaborations</h5>
                 <div class="card-body">
                     <ul>
                         <li><a href="#">Campagnes</a></li>
@@ -40,19 +82,20 @@
                 </div>
             </div>
         </div>
-        <div class="col" id="main-description">
-            <div class="card border-0 shadow">
-                <h5 class="card-header">A propos</h5>
+        <div class="col-md-6 mb-3" id="main-description">
+            <div class="card border-0 shadow rounded-4 ">
+                <h5 class="card-header rounded-top-4 shadow-sm border-0">A propos</h5>
                 <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">{{profile.main_description}}</p>
                 </div>
             </div>
         </div>
-        <div class="col" id="advertisers-content">
-            <div class="card border-0 shadow">
-                <h5 class="card-header">Publicités</h5>
+        <div class="col-md-3 mb-3" id="advertisers-content">
+            <div class="card border-0 shadow rounded-4 mb-5 ">
+                <h5 class="card-header rounded-top-4 shadow-sm border-0">Publicités</h5>
                 <div class="card-body">
+                    <img src="{% static 'images/david-jorre-9f1gCaLkZBU-unsplash.jpg' %}" alt="">
                     <h5 class="card-title">Special title treatment</h5>
                 </div>
             </div>
