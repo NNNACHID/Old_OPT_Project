@@ -1,23 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container content-container d-flex justify-content-center align-items-center align-self-center">
+{% load static %}
+{% load i18n %}
 
-    <form method="post" class="my-form mt-5 p-5 rounded custom-form-card  text-center w-50 shadow-lg" id="custom-form">
-        <h2>Login</h2>
-        <br>
-        {% for message in messages %}
-        <h5>{{ message }}</h5>
-        {% endfor %}
-        {% csrf_token %}
-        {% for field in form %}
-        <div class="mb-4 mx-3">
-            {{ field }}
+<div class="container content-container d-flex justify-content-center align-content-center mt-3 p-5">
+
+    <div class="row border-0 rounded-5 shadow p-3 box-area mx-1 mt-5">
+        
+        <div class="col-md-6 right-box custom-form">
+            <form method="post" class="p-5 text-center">
+                <h2>Login</h2>
+                <br>
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="input-group mb-3 ">
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <div class="mb-3 d-flex justify-content-center ">
+                    <button type="submit" class="btn text-decoration-none register-button rounded">Se connecter</button>
+                </div>
+            </form>
         </div>
-        {% endfor %}
-        <div class="mb-3 d-flex justify-content-center">
-            <button type="submit" class="btn bg-light" id="register-button">Se connecter</button>
+        <div class="col-md-6 left-box rounded-4 d-flex justify-content-center align-items-center flex-column banner-container">
+            <div class="form-banner mb-3">
+                <img id="login-banner" src="{% static '/images/key_loggin.png' %}" class="img-fluid" alt=""
+                    style="width: 240px">
+            </div>
+            <p class="text-white fs-1">Bonjour !</p>
+            <small class="text-white text-wrap text-center fs-4 mb-1">Authentifiez-vous pour avoir accès à la plateforme</small>
         </div>
-    </form>
+    </div>
+
+
 </div>
 {% endblock %}

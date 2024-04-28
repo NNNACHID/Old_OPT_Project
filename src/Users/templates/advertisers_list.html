@@ -1,14 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Liste des annonceurs</h2>
-<ul>
-    {% for user in users %}
-        {% if user.user_type == "advertiser" %}
-        <li>{{ user.username}}</li>
-        {% endif %}
-    {% empty %}
-    <li>No users found</li>
-    {% endfor %}
-</ul>
+<div class="container content-container mt-5 p-5">
+    <div class="card-container row justify-content-center align-items-center align-self-center shadow rounded-5 mt-5">
+        <div class="col-md-4 mb-3 mt-5">
+            <form class="mx-auto" role="search">
+                <input class="form-control" type="search" placeholder="" aria-label="Search">
+            </form>
+        </div>
+        {% for profile in profiles %}
+        <div class="row justify-content-center ">
+            <div class="col-md-4 mb-3 ">
+                <a href="{% url 'users:profile' profile.user.pk %}" class="text-decoration-none">
+                    <div class="user-card d-flex align-items-start border-0 rounded shadow-sm p-1">
+                        <div class="user-picture"><img src="{{ profile.profile_picture.url}}" alt="img-thumbnail"
+                                class="rounded-circle user-thumbnail h-25">
+                        </div>
+                        <div class="user-info">
+                            <h5 class="fw-bold fst-italic">{{ profile.user.username }}</h5>
+                            <span class="pb-3">{{ profile.short_description }}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No users found</p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

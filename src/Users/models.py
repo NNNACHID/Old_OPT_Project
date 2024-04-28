@@ -30,6 +30,12 @@ class CustomUserProfile(models.Model):
         null=True,
         blank=True,
     )
+    second_description = models.TextField(
+        verbose_name="Description",
+        help_text="Enter a description",
+        null=True,
+        blank=True,
+    )
     partners = models.JSONField(default=dict)
     banner = models.ImageField(
         upload_to="static/banners/",

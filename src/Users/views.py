@@ -20,6 +20,10 @@ def register_user(request):
         form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
             form.save()
+            messages.success(
+                request,
+                "Félicitations ! Vous êtes inscris sur la plateforme, connectez-vous pour commencer à trouver de nouvelles collabs !",
+            )
             return redirect("home")
     else:
         form = CustomUserCreationForm()
@@ -105,5 +109,3 @@ def get_profile_list_by_type(request):
             "profiles": CustomUserProfile.objects.filter(user__user_type="association")
         }
         return render(request, "associations_list.html", context)
-
-

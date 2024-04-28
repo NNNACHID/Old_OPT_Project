@@ -14,7 +14,7 @@ class Campaign(models.Model):
         max_digits=10,
         decimal_places=2,
         validators=[MinValueValidator(0)],
-        help_text=_("Budget in your currency"),
+        help_text=_(""),
     )
     campaign_creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='created_campaigns')
     collaborators = models.ManyToManyField(
@@ -33,3 +33,23 @@ class Campaign(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def add_collaborator(self, collaborator):
+        self.collaborators.add(collaborator)
+
+    def remove_collaborator(self, collaborator):
+        self.collaborators.remove(collaborator)
+
+
+class CampaignCollaboratorRequest(models.Model):
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    collaborator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    accepted = models.BooleanField(default=False)
+    
+    def accept(self):
+        self.accepted = True
+        self.save()
+
+    def decline(self):
+        self.campaign.remove_collaborator(self.collaborator)
+        self.delete()

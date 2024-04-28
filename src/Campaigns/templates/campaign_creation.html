@@ -1,51 +1,51 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+{{ wizard.form.media }}
+{% endblock %}
 
 {% block content %}
-<div class="container content-container d-flex justify-content-center align-items-center align-self-center">
-    
-    <form method="post" enctype="multipart/form-data"
-        class=" p-5 rounded custom-form-card w-75 text-center" id="custom-form">
-        <h1 class="justify-content-start text-decoration-underline">Créez une campagne</h1>
-        {% csrf_token %}
-        <div class="row justify-content-center ">
-            <div class="col-6 my-auto w-75">
-                <div class="mb-3 w-75 m-auto">
-                    <label for="{{ form.name.id_for_label }}" class="form-label"></label>
-                    {{ form.name }}
-                    {{ form.name.errors }}
-                </div>
-                <div class="mb-3 w-75 m-auto">
-                    <label for="{{ form.start_date.id_for_label }}" class="form-label"></label>
-                    {{ form.start_date }}
-                    {{ form.start_date.errors }}
-                </div>
-                <div class="mb-3 w-75 m-auto">
-                    <label for="{{ form.end_date.id_for_label }}" class="form-label"></label>
-                    {{ form.end_date }}
-                    {{ form.end_date.errors }}
-                </div>
-
-                <div class="mb-3 w-75 mx-auto">
-                    <label for="{{ form.description.id_for_label }}" class="form-label"></label>
-                    {{ form.description }}
-                    {{ form.description.errors }}
-                </div>
-                
-                
-                <div class="mb-3 w-75 mx-auto" >
-                    <label for="{{ form.collaborators.id_for_label }}" class="form-label"></label>
-                    {{ form.collaborators }}
-                    {{ form.collaborators.errors }}
-                </div>
-                <div class="mb-3 w-75 mx-auto">
-                    <label for="{{ form.budget.id_for_label }}" class="form-label"></label>
-                    {{ form.budget }}
-                    {{ form.budget.errors }}
-                </div>
-                <button type="submit" class="btn bg-light" id="register-button">Enregistrer</button>
-            </div>
-
+<div class="container content-container d-flex justify-content-center align-content-center mt-3 pt-5">
+    <div class="col-md-6 border-0 rounded-5 shadow p-3 box-area mx-1 mt-5">
+        <div>
+            <h1 class="ml-2">Demande de collaboration</h1>
+            <p>b,efqizenfiqzne fqz eqzne qzfnqziebnifq</p>
         </div>
-    </form>
+        <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+        <form action="" method="post" class="mt-5 ">{% csrf_token %}
+            <table>
+                {{ wizard.management_form }}
+                {% if wizard.form.forms %}
+                {{ wizard.form.management_form }}
+                {% for form in wizard.form.forms %}
+                {{ form|crispy }}
+                {% endfor %}
+                {% else %}
+                {{ wizard.form|crispy }}
+                {% endif %}
+            </table>
+            {% if wizard.steps.current == wizard.steps.last %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"
+                class="btn text-decoration-none register-button rounded">{% translate "prev step"%}</button>
+            <button type="submit" class="btn text-decoration-none register-button rounded">Valider !</button>
+            {% else %}
+                {% if wizard.steps.prev %}
+                    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"class="btn text-decoration-none register-button rounded">{% translate "prev step"%}</button>
+                    <button type="submit" class="btn text-decoration-none register-button rounded">Étape suivante</button>
+                {% else %}
+                    <button type="submit" class="btn text-decoration-none register-button rounded">Étape suivante</button>
+                {% endif %}
+            {% endif %}
+        </form>
+    </div>
 </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $("#id_2-collaborators").select2();
+</script>
 {% endblock %}

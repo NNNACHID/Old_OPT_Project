@@ -1,79 +1,130 @@
-from django.http import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.decorators.http import require_http_methods
-from django.views.generic.list import ListView
 from django.contrib import messages
 
-from Campaigns.models import Campaign
-from Campaigns.forms import CampaignCreationForm
+from Campaigns.models import *
+from Campaigns.forms import *
 
-from Users.models import CustomUser
+from formtools.wizard.views import SessionWizardView
+
+
+class CampaignWizardView(SessionWizardView):
+    form_list = [
+        CampaignCreationStepOneForm,
+        CampaignCreationStepTwoForm,
+        CampaignCreationStepThreeForm,
+    ]
+    template_name = "campaign_creation.html"
+
+    def get_form_initial(self, step):
+        initial = super().get_form_initial(step)
+        collaborator_id = self.kwargs.get('collaborator_id')
+        if collaborator_id and step == '2':
+            initial['collaborators'] = [collaborator_id]
+        return initial
+
+    def done(self, form_list, **kwargs):
+        form_data = [form.cleaned_data for form in form_list]
+        campaign = Campaign(
+            name=form_data[0]['name'],
+            start_date=form_data[0]['start_date'],
+            end_date=form_data[0]['end_date'],
+            description=form_data[1]['description'],
+            budget=form_data[1]['budget'],
+            campaign_creator=self.request.user,
+        )
+        campaign.save()
+        collaborators = form_data[2]["collaborators"]
+        for collaborator in collaborators:
+            campaign.add_collaborator(collaborator)
+        # campaign.collaborators.set(form_data[2]['collaborators'])
+        campaign.save()
+        messages.success(self.request, "Campagne créer avec succès!")
+        return redirect("home")
+
+@login_required(login_url="users:login")
+def create_campaign(request, collaborator_id=None):
+    wizard_view = CampaignWizardView.as_view()
+    return wizard_view(request, collaborator_id=collaborator_id)
 
 
 @login_required(login_url="users:login")
-@require_http_methods(["GET", "POST"])
-def create_campaign(request):
-
-    if request.method == "POST":
-        form = CampaignCreationForm(request.POST)
-        if form.is_valid():
-            campaign = form.save(commit=False)
-            campaign.campaign_creator = request.user
-            campaign.save()
-            form.save_m2m()  # Pour enregistrer les relations ManyToMany
-            messages.success(request, "Campaign has been created!")
-            return redirect("home")
-    else:
-        form = CampaignCreationForm()
-    return render(request, "campaign_creation.html", {"form": form})
-
-
 def get_campaigns_list(request):
 
     campaigns_with_collaborators = []
+    user = request.user
+
     for campaign in Campaign.objects.all():
-        campaign_data = {
-            "campaign": campaign,
-            "collaborators": campaign.collaborators.all(),
-        }
-        campaigns_with_collaborators.append(campaign_data)
+        if campaign.campaign_creator == user or user in campaign.collaborators.all():
+            campaign_data = {
+                "campaign": campaign,
+                "collaborators": campaign.collaborators.all(),
+            }
+            campaigns_with_collaborators.append(campaign_data)
 
     context = {"campaigns_with_collaborators": campaigns_with_collaborators}
     return render(request, "campaigns_list.html", context)
 
 
-# Dynamic HTMX list for collaborators in the form
+@login_required(login_url="users:login")
+def get_campaigns_participate_list(request):
+    campaigns_with_collaborators = []
+    user = request.user
 
-# class CollaboratorsList(LoginRequiredMixin, ListView):
-#     model = CustomUser
-#     template_name = "collaborators_list.html"
-#     context_object_name = "collaborators"
+    for campaign in Campaign.objects.all():
+        if user in campaign.collaborators.all():
+            campaign_data = {
+                "campaign": campaign,
+                "collaborators": campaign.collaborators.all(),
+            }
+            campaigns_with_collaborators.append(campaign_data)
 
-#     def get_queryset(self):
-#         campaign = self.request.campaign
-#         return campaign.collaborators.all()
-
-
-# def search_collaborator(request):
-#     search_text = request.GET.get("search")
-
-#     results = CustomUser.objects.filter(username__icontains=search_text)
-#     context = {'results': results}
-#     return render(request, 'partials/search_results.html', context)
+    context = {"campaigns_with_collaborators": campaigns_with_collaborators}
+    return render(request, "campaigns_participate_list.html", context)
 
 
-# def get_collaborator(request):
-#     collaborator_username = request.GET.get("username")
+@login_required(login_url="users:login")
+def get_campaigns_created_list(request):
+    campaigns_with_collaborators = []
+    user = request.user
 
-#     collaborator = CustomUser.objects.get(username=collaborator_username)
-#     # Renvoyer le résultat en tant que JSON
-#     return JsonResponse({"id": collaborator.id, "username": collaborator.username})
+    for campaign in Campaign.objects.all():
+        if campaign.campaign_creator == user:
+            campaign_data = {
+                "campaign": campaign,
+                "collaborators": campaign.collaborators.all(),
+            }
+            campaigns_with_collaborators.append(campaign_data)
 
-# def delete_collaborator(request, pk):
-#     request.campaign.collaborators.remove(pk)
-#     collaborators = request.campaign.collaborators.all()
-#     return render(
-#         request, "partials/collaborators_list.html", {"collaborators": collaborators}
-#     )
+    context = {"campaigns_with_collaborators": campaigns_with_collaborators}
+    return render(request, "campaigns_created_list.html", context)
+
+
+@login_required(login_url="users:login")
+def get_campaign_page(request, pk):
+
+    campaign = get_object_or_404(Campaign, pk=pk)
+    context = {"campaign": campaign}
+    return render(request, "campaign.html", context)
+
+
+@login_required(login_url="users:login")
+def campaign_collaborator_requests(request):
+    requests = CampaignCollaboratorRequest.objects.filter(collaborator=request.user)
+    return render(
+        request, "campaigns_requests_list.html", {"requests": requests}
+    )
+
+
+@login_required(login_url="users:login")
+def accept_campaign_collaborator_request(request_id):
+    request_obj = CampaignCollaboratorRequest.objects.get(pk=request_id)
+    request_obj.accept()
+    return redirect("campaigns:campaigns_list") 
+
+
+@login_required
+def refuse_campaign_collaborator_request(request, pk):
+    request_obj = CampaignCollaboratorRequest.objects.get(pk=pk)
+    request_obj.decline()
+    return redirect("campaigns:campaigns_list")
