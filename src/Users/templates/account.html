@@ -67,6 +67,16 @@
                     {{ profile_form.tiktok_url }}
                     {{ profile_form.tiktok_url.errors }}
                 </div>
+                <div class="mb-3 rounded">
+                    <label for="{{ profile_form.snapchat_url.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.snapchat_url }}
+                    {{ profile_form.snapchat_url.errors }}
+                </div>
+                <div class="mb-3 rounded">
+                    <label for="{{ profile_form.contact_mail_url.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.contact_mail_url }}
+                    {{ profile_form.contact_mail_url.errors }}
+                </div>
 
                 <button type="submit" class="btn w-25 mx-auto register-button">Enregistrer</button>
             </div>

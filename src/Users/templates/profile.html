@@ -8,10 +8,10 @@
             <div class="card shadow-lg border-0 rounded-5">
                 <img src="{{ profile.banner.url }}" class="card-img-top banner rounded-top-5" alt="...">
                 <img src="{{ profile.profile_picture.url }}" alt="img-thumbnail"
-                    class="img-thumbnail rounded-circle position-absolute top-50 start-50 translate-middle shadow w-25 h-25"
+                    class="img-thumbnail rounded-circle position-absolute top-50 start-50 translate-middle shadow"
                     id="profile_picture">
                 <div class="card-body mt-5 special-color">
-                    <h5 class="card-title">{{profile.name}}</h5>
+                    <h5 class="card-title">{{profile.user.username}}</h5>
                     <div class="row justify-content-center g-0">
                         {% if profile.instagram_url %}
                         <div class="col social-logo-container">
@@ -19,6 +19,10 @@
                                 <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
                             </a>
                         </div>
+                        {% else %}
+                            <div class="col social-logo-container-blank">
+                                
+                            </div>
                         {% endif %}
                         {% if profile.x_url %}
                         <div class="col social-logo-container">
@@ -43,29 +47,30 @@
                         {% endif %}
                         {% if profile.tiktok_url %}
                         <div class="col social-logo-container">
-                            <a href="{{profile.instagram_url}}">
+                            <a href="{{profile.tiktok_url}}">
                                 <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
                             </a>
                         </div>
                         {% endif %}
                         {% if profile.snapchat_url %}
                         <div class="col social-logo-container">
-                            <a href="{{profile.instagram_url}}">
+                            <a href="{{profile.snapchat_url}}">
                                 <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
                             </a>
                         </div>
                         {% endif %}
-                        {% if profile.contact_mail %}
+                        {% if profile.contact_mail_url %}
                         <div class="col social-logo-container">
-                            <a href="{{profile.instagram_url}}">
-                            <i class="fa-regular fa-envelope"></i>
+                            <a href="{{profile.contact_mail}}">
+                                <i class="fa-regular fa-envelope"></i>
                             </a>
                         </div>
                         {% endif %}
                     </div>
                     <p class="card-text">{{profile.short_description}}</p>
                     {% if profile.user != user %}
-                    <a class="text-decoration-none btn btn-success" type="button" href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
+                    <a class="btn collaboration-button rounded-4 shadow-sm" type="button"
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
                     {% endif %}
                     <div></div>
                 </div>
@@ -76,20 +81,40 @@
         <div class="col-md-9 mb-3" id="main-description">
             <div class="card border-0 shadow rounded-4 ">
                 <div class="card-body special-color">
-                    <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">{{profile.main_description}}</p>
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        Grille tarifaire
+                    <button class="btn rate-button rounded-4" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Je suis une marque
                     </button>
                     {% if profile.user != user %}
-                    <a class="text-decoration-none btn" type="button"
-                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
+                    <a class="btn collaboration-button rounded-4 shadow-sm" type="button"
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis un créateur</a>
                     {% endif %}
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body border-0">
-                            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user
-                            activates the relevant trigger.
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Story unique</th>
+                                        <td>Mark</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Story</th>
+                                        <td>Jacob</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Post</th>
+                                        <td>Larry the Bird</td>
+                                </tbody>
+                            </table>
+                            <a class="btn collaboration-button rounded-4 shadow-sm mt-2" type="button"
+                                href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Rejoindre ma campagne</a>
                         </div>
                     </div>
                 </div>
@@ -98,8 +123,7 @@
         <div class="col-md-3 mb-3" id="advertisers-content">
             <div class="card border-0 shadow rounded-4 mb-5 ">
                 <div class="card-body">
-                    <img src="{% static 'images/david-jorre-9f1gCaLkZBU-unsplash.jpg' %}" alt="">
-                    <h5 class="card-title">Special title treatment</h5>
+                    <img src="{% static 'images/publibanner.png' %}" alt="">
                 </div>
             </div>
         </div>

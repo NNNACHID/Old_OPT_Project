@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container content-container mt-5 pt-5">
+    <div class="container content-container mt-5 p-4">
         
-        <div class="row justify-content-center align-items-center align-self-center border-0 shadow rounded-5 mt-5 campaigns-container pt-5">
+        <div class="row justify-content-center align-items-center align-self-center border-0 shadow rounded-5 mt-5 campaigns-container p-3">
             <div class="col-md-2 justify-content-center align-self-start p-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'campaigns:campaigns_requests_list' %}">Demande de collaboration</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de collaboration</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'campaigns:campaigns_created_list' %}">Camapgnes crées</a>
+                        <a class="nav-link" href="{% url 'campaigns:campaigns_created_list' %}">Campagnes créées</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'campaigns:campaigns_participate_list' %}">Campagnes participées</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'campaigns:campaign_creation' %}">Creez une campagne</a>
+                        <a class="nav-link" href="{% url 'campaigns:campaign_creation' %}">Créer une campagne</a>
                     </li>
                 </ul>
             </div>

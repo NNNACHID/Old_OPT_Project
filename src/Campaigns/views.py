@@ -39,7 +39,7 @@ class CampaignWizardView(SessionWizardView):
             campaign.add_collaborator(collaborator)
         # campaign.collaborators.set(form_data[2]['collaborators'])
         campaign.save()
-        messages.success(self.request, "Campagne créer avec succès!")
+        messages.success(self.request, "Campagne créée avec succès!")
         return redirect("home")
 
 @login_required(login_url="users:login")
