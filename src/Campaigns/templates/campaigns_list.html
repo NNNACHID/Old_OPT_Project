@@ -23,16 +23,19 @@
             <div class="col-md-10">
                 {% for campaign_data in campaigns_with_collaborators %}
                 <div class="row justify-content-center">
-                    <div class="col-md-6 mb-3 rounded-5 shadow text-center campaigns-cards p-3">
-                        <h2>{{ campaign_data.campaign.name }}</h2>
-                        <h5>{{ campaign_data.campaign.campaign_creator }}</h5>
-                        <h3>Collaborateurs :</h3>
-                        <ul>
-                            {% for collaborator in campaign_data.collaborators %}
-                            <li>{{ collaborator.username }}</li>
-                            {% endfor %}
-                        </ul>
+                    <a href="{% url 'campaigns:campaign_page' campaign_data.campaign.pk %}" class="text-decoration-none">
+                    <div class="card my-2 campaigns-cards shadow">
+                        <h3 class="card-header fw-bold">{{ campaign_data.campaign.name }}</h3>
+                        <div class="card-body">
+                            <h5 class="card-title">Collaborateurs :</h5>
+                                <ul class="">
+                                    {% for collaborator in campaign_data.collaborators %}
+                                    <li>{{ collaborator.username }}</li>
+                                    {% endfor %}
+                                </ul>
+                        </div>
                     </div>
+                    </a>
                 </div>
                 {% empty %}
                 <p>Aucune campagne pour le moment</p>

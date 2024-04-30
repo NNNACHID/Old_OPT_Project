@@ -208,7 +208,8 @@ main {
   color: #f0fdf5;
   background-color: #37db73;
   transition: 0.3s background-color;
-  
+  min-width: 90px;
+  max-width: 250px;
 }
 
 .register-button:hover{
@@ -219,11 +220,6 @@ main {
 .custom-form-card{
   background-color: #ffffff;
   color: #1f1f1f;
-}
-
-.custom-form-card input, textarea{
-  border:#22c45e 2px solid !important;
-  transition: all 0.1s ease-in-out !important;
 }
 
 .custom-form-card input:focus, textarea:focus{
@@ -294,7 +290,8 @@ main {
 /************PROFILE****************/
 
 .banner {
-  max-height: 240px;
+  max-height: 250px;
+  min-height: 240px;
 }
 
 
@@ -325,6 +322,7 @@ main {
   width: 150px;
   height: 450px;
 }
+
 .social-logo-container{
   max-width: 60px;
 }
@@ -360,8 +358,31 @@ main {
   border: 4px #22c45e solid;
 }
 
+.publireportage-title{
+  font-weight: 390;
+  color: #37db73;
+  font-size: 60px;
+  font-family: "Monoton", sans-serif;
+  font-style: normal;
+}
+
+.publireportage-text{
+   color: #37db73;
+   font-size: 21px;
+}
+
+.publireportage-image{
+  height: 360px !important;
+  width: 360px !important;
+}
 
 /*******************CAMPAIGNS*******************/
+
+.campaign-creation-card-header{
+  background-color: #22c45e;
+  color: #ffffff;
+}
+
 
 .campaigns-container {
   background-color: #ffffff;
@@ -369,11 +390,14 @@ main {
 
 .campaigns-cards {
  
-  background-color: #ffffff;
-  border: 6px solid #37db73;
-  text-shadow: 1px 1px 2px rgb(0, 0, 0);
+  background-color: #37db73;
+  color: #ffffff !important;
 }
 
+.request-campaign-button{
+  color: #ffffff;
+  border: #ffffff 3px solid;
+}
 
 /*******************FOOTER*******************/
 

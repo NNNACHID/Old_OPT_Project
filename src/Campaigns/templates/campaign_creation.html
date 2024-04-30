@@ -8,13 +8,14 @@
 
 {% block content %}
 <div class="container content-container d-flex justify-content-center align-content-center mt-3 pt-5">
-    <div class="col-md-6 border-0 rounded-5 shadow p-3 box-area mx-1 mt-5">
-        <div>
-            <h1 class="ml-2">Demande de collaboration</h1>
-            <p>b,efqizenfiqzne fqz eqzne qzfnqziebnifq</p>
+    <div class="col-md-6 border-0 rounded-5 shadow p-3 box-area mx-1 my-5">
+        <div class="campaign-creation-card-header p-3 rounded-4 mb-1">
+            <h2 class="ml-2 text-decoration-underline fw-bold">Demande de collaboration</h2>
+            <p>Suivez les étapes afin de créée votre campagne</p>
         </div>
-        <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
-        <form action="" method="post" class="mt-5 ">{% csrf_token %}
+        <br>
+        <p>Étape {{ wizard.steps.step1 }} sur {{ wizard.steps.count }}</p>
+        <form action="" method="post" class="mt-5">{% csrf_token %}
             <table>
                 {{ wizard.management_form }}
                 {% if wizard.form.forms %}

@@ -1,6 +1,6 @@
 import json
 from django import forms
-
+from django.utils.translation import gettext_lazy as _
 from Campaigns.models import Campaign
 from Users.models import CustomUser
 
@@ -13,16 +13,21 @@ class CampaignCreationStepOneForm(forms.ModelForm):
 
         widgets = {
             "name": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Nom de la campagne"}
+                attrs={"class": "form-control", "placeholder": _("Nom de la campagne")}
             ),
             "start_date": forms.DateInput(
-                attrs={"class": "form-control", "placeholder": "Début de la campagne"}
+                attrs={"class": "form-control", "placeholder": _("Début de la campagne")}
             ),
             "end_date": forms.DateInput(
-                attrs={"class": "form-control", "placeholder": "Fin de la campagne"}
+                attrs={"class": "form-control", "placeholder": _("Fin de la campagne")}
             ),
         }
 
+        labels = {
+            "name": _("Nom"),
+            "start_date": _("Début"),
+            "end_date": _("Fin"),
+        }
 
 class CampaignCreationStepTwoForm(forms.ModelForm):
 

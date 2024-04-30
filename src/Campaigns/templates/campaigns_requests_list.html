@@ -14,14 +14,16 @@
         </div>
         <div class="col-md-10">
             {% for request in requests %}
+            <a href="{% url 'campaigns:campaign_page' request.campaign.pk %}" class="text-decoration-none">
             <div class="row justify-content-center">
                 <div class="col-md-6 mb-3 rounded-5 shadow text-center campaigns-cards p-3">
                     <h2>{{ request.campaign.name }}</h2>
                     <h5>{{ request.camapign.description }}</h5>
-                    <a href="{% url 'campaigns:accept_campaign_collaborator_request' request.id %}" class="btn btn-primary">Accepter</a>
-                    <a href="{% url 'campaigns:refuse_campaign_collaborator_request' request.id %}" class="btn btn-danger">Refuser</a>
+                    <a href="{% url 'campaigns:accept_campaign_collaborator_request' request.id %}" class="btn request-campaign-button shadow-sm">Accepter</a>
+                    <a href="{% url 'campaigns:refuse_campaign_collaborator_request' request.id %}" class="btn request-campaign-button shadow-sm ml-2">Refuser</a>
                 </div>
             </div>
+            </a>
             {% empty %}
             <p>Aucune demandes pour le moment</p>
             {% endfor %}

@@ -68,7 +68,7 @@ def update_user(request):
             user_form.save()
             profile_form.save()
 
-            messages.success(request, "User has been updated ! ")
+            messages.success(request, "Profil mis à jour ! ")
             return redirect("home")
     else:
         user_form = CustomUserUpdateForm(instance=user)

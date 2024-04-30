@@ -48,21 +48,21 @@
                         {% if profile.tiktok_url %}
                         <div class="col social-logo-container">
                             <a href="{{profile.tiktok_url}}">
-                                <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
+                                <img src="{% static 'images/tiktok.png' %}" alt="Logo Instagram" class="social-logo">
                             </a>
                         </div>
                         {% endif %}
                         {% if profile.snapchat_url %}
                         <div class="col social-logo-container">
                             <a href="{{profile.snapchat_url}}">
-                                <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
+                                <img src="{% static 'images/snapchat.png' %}" alt="Logo Instagram" class="social-logo">
                             </a>
                         </div>
                         {% endif %}
-                        {% if profile.contact_mail_url %}
+                        {% if profile.contact_mail %}
                         <div class="col social-logo-container">
                             <a href="{{profile.contact_mail}}">
-                                <i class="fa-regular fa-envelope"></i>
+                                <img src="{% static 'images/contact_mail.png' %}" alt="Logo Instagram" class="social-logo">
                             </a>
                         </div>
                         {% endif %}
@@ -82,12 +82,12 @@
             <div class="card border-0 shadow rounded-4 ">
                 <div class="card-body special-color">
                     <p class="card-text">{{profile.main_description}}</p>
-                    <button class="btn rate-button rounded-4" type="button" data-bs-toggle="collapse"
+                    <!-- <button class="btn rate-button rounded-4 my-1" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Je suis une marque
                     </button>
                     {% if profile.user != user %}
-                    <a class="btn collaboration-button rounded-4 shadow-sm" type="button"
+                    <a class="btn collaboration-button rounded-4 shadow-sm my-1" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis un créateur</a>
                     {% endif %}
                     <div class="collapse" id="collapseExample">
@@ -116,14 +116,16 @@
                             <a class="btn collaboration-button rounded-4 shadow-sm mt-2" type="button"
                                 href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Rejoindre ma campagne</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
         <div class="col-md-3 mb-3" id="advertisers-content">
             <div class="card border-0 shadow rounded-4 mb-5 ">
                 <div class="card-body">
-                    <img src="{% static 'images/publibanner.png' %}" alt="">
+                    <h1 class="publireportage-title">OPT.</h1>
+                    <p class="fw-bold p-3 publireportage-text">Découvrez la première plateforme de collaborations impactantes, où les créateurs de contenu, les annonceurs et les
+                    associations se réunissent pour une cause commune.</p>
                 </div>
             </div>
         </div>

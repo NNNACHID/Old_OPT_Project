@@ -104,7 +104,8 @@ def get_campaigns_created_list(request):
 def get_campaign_page(request, pk):
 
     campaign = get_object_or_404(Campaign, pk=pk)
-    context = {"campaign": campaign}
+    collaborators = campaign.collaborators.all()
+    context = {"campaign": campaign, "collaborators": collaborators}
     return render(request, "campaign.html", context)
 
 
