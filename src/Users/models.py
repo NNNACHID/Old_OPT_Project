@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.forms import JSONField
+from django.db.models import JSONField
 from django.contrib.auth.models import AbstractUser
 
 
@@ -68,3 +68,21 @@ class CustomUserProfile(models.Model):
     contact_mail = models.EmailField(
         max_length=255, null=True, blank=True, verbose_name="Adresse e-mail"
     )
+    services = JSONField(default=list, blank=True)
+
+    def add_service(self, name, price):
+        service = Service(name, str(price))  
+        self.services.append(service.__dict__)
+        self.save()
+
+    def remove_service(self, index):
+        del self.services[index]
+        self.services = [service for service in self.services if isinstance(service['price'], str)]  
+        self.save()
+
+
+class Service:
+    
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price

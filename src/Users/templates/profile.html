@@ -82,7 +82,7 @@
             <div class="card border-0 shadow rounded-4 ">
                 <div class="card-body special-color">
                     <p class="card-text">{{profile.main_description}}</p>
-                    <!-- <button class="btn rate-button rounded-4 my-1" type="button" data-bs-toggle="collapse"
+                    <button class="btn rate-button rounded-4 my-1" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Je suis une marque
                     </button>
@@ -98,25 +98,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for service in profile.services %}
                                     <tr>
-                                        <th scope="row">Story unique</th>
-                                        <td>Mark</td>
-                                       
+                                        <th scope="row">{{ service.name }}</th>
+                                        <td>{{ service.price }}</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">Story</th>
-                                        <td>Jacob</td>
-                                       
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Post</th>
-                                        <td>Larry the Bird</td>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                             <a class="btn collaboration-button rounded-4 shadow-sm mt-2" type="button"
                                 href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Rejoindre ma campagne</a>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>

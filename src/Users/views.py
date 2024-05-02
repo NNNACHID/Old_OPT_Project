@@ -64,17 +64,61 @@ def update_user(request):
             request.POST or None, request.FILES, instance=profile
         )
 
-        if user_form.is_valid() and profile_form.is_valid():
+        service_form = ServiceForm(request.POST or None)
+
+        if user_form.is_valid() and profile_form.is_valid() and service_form.is_valid():
             user_form.save()
             profile_form.save()
+
+            services = []
+            prestations = [
+                (service_form.cleaned_data["first_prestation"], service_form.cleaned_data["first_prestation_price"]),
+                (service_form.cleaned_data["second_prestation"], service_form.cleaned_data["second_prestation_price"]),
+                (service_form.cleaned_data["third_prestation"], service_form.cleaned_data["third_prestation_price"]),
+            ]
+
+            for name, price in prestations:
+                if name and price:
+                    services.append({'name': name, 'price': str(price)})  
+
+            profile.services = services
+            profile.save()
 
             messages.success(request, "Profil mis à jour ! ")
             return redirect("home")
     else:
         user_form = CustomUserUpdateForm(instance=user)
         profile_form = CustomUserProfileForm(instance=profile)
+        service_form = ServiceForm(
+            initial={
+                "first_prestation": (
+                    profile.services[0]["name"] if profile.services else ""
+                ),
+                "first_prestation_price": (
+                    profile.services[0]["price"] if profile.services else ""
+                ),
+                "second_prestation": (
+                    profile.services[1]["name"] if len(profile.services) > 1 else ""
+                ),
+                "second_prestation_price": (
+                    profile.services[1]["price"] if len(profile.services) > 1 else ""
+                ),
+                "third_prestation": (
+                    profile.services[2]["name"] if len(profile.services) > 2 else ""
+                ),
+                "third_prestation_price": (
+                    profile.services[2]["price"] if len(profile.services) > 2 else ""
+                ),
+            }
+        )
     return render(
-        request, "account.html", {"user_form": user_form, "profile_form": profile_form}
+        request,
+        "account.html",
+        {
+            "user_form": user_form,
+            "profile_form": profile_form,
+            "service_form": service_form,
+        },
     )
 
 

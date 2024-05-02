@@ -162,6 +162,48 @@ class CustomUserProfileForm(forms.ModelForm):
         }
 
 
+class ServiceForm(forms.Form):
+    first_prestation = forms.CharField(
+        label="Premiere pretation",
+        max_length=100,
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+    first_prestation_price = forms.DecimalField(
+        label="Prix de la premiere prestation",
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
+
+    second_prestation = forms.CharField(
+        label="Seconde pretation",
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+    second_prestation_price = forms.DecimalField(
+        label="Prix de la seconde prestation",
+        max_digits=10,
+        decimal_places=2,
+        required=False,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
+
+    third_prestation = forms.CharField(
+        label="Troisième pretation",
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+    third_prestation_price = forms.DecimalField(
+        label="Prix de la troisième prestation",
+        max_digits=10,
+        decimal_places=2,
+        required=False,
+        widget=forms.NumberInput(attrs={"class": "form-control"}),
+    )
+
+
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(
