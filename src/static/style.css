@@ -136,7 +136,11 @@ main {
 .hero-land-page h1 {
   font-family: "Monoton", sans-serif;
   font-style: normal;
-  font-size: 3em;
+  font-size: 6em;
+}
+
+.hero-land-page p {
+  font-size: 1.1em;
 }
 
 .content-container { 
@@ -152,14 +156,19 @@ main {
 }
 
 #second-hero{
+  color: #ffffff;
+  font-size: 1.8em;
+  text-shadow: 1px 1px 2px rgb(121, 121, 121);
   min-height: 60vh;
   height: 100%;
   width: 100%;
-  background: url("images/hero-background-2.png") no-repeat center;
+  background: linear-gradient(rgba(116, 116, 116, 0.123), rgba(116, 116, 116, 0.123)),url("images/hero-background-2.png") no-repeat center;
   background-size: cover;
 }
 
 #third-hero{
+  color: #ffffff;
+  font-size: 1.5em;
   min-height: 100vh;
   height: 100%;
   width: 100%;
@@ -171,7 +180,10 @@ main {
   min-height: 60vh;
   height: 100%;
   width: 100%;
-  background: url("images/hero-background-2.png") no-repeat center;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgb(121, 121, 121);
+  font-size: 1.8em;
+  background: linear-gradient(rgba(116, 116, 116, 0.123), rgba(116, 116, 116, 0.123)),url("images/hero-background-2.png") no-repeat center;
   background-size: cover;
 }
 
@@ -179,6 +191,8 @@ main {
   min-height: 100vh;
   height: 100%;
   width: 100%;
+  font-size: 1.8em;
+  color: #37db73;
   background-color: #ffffff;
   background-size: cover;
 }
@@ -402,6 +416,6 @@ main {
 /*******************FOOTER*******************/
 
 footer{ 
-  color: #37db73;
-  background-color:#ffffff;
+  color: #ffffff;
+  background-color:#37db73;
 }

@@ -2,14 +2,15 @@ from django.db import models
 from django.conf import settings
 from django.db.models import JSONField
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 
 
 class CustomUser(AbstractUser):
 
     USER_TYPE_CHOICES = (
-        ("creator", "Creator"),
-        ("advertiser", "Advertiser"),
-        ("association", "Association"),
+        ("creator", _("Créateur")),
+        ("advertiser", _("Annonceur")),
+        ("association", _("Association")),
     )
     user_type = models.CharField(max_length=14, choices=USER_TYPE_CHOICES)
 

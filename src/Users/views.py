@@ -25,6 +25,8 @@ def register_user(request):
                 "Félicitations ! Vous êtes inscris sur la plateforme, connectez-vous pour commencer à trouver de nouvelles collabs !",
             )
             return redirect("home")
+        else:
+            messages.info(request, "Veuillez remplir le formulaire de manière adéquate.")
     else:
         form = CustomUserCreationForm()
 

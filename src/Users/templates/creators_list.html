@@ -14,7 +14,9 @@
                         </div>
                         <div class="user-info">
                             <h5 class="fw-bold fst-italic">{{ profile.user.username }}</h5>
+                            {% if profile.short_description != None %}
                             <span class="pb-3">{{ profile.short_description }}</span>
+                            {% endif %}
                         </div>
                     </div>
                 </a>

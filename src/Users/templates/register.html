@@ -15,7 +15,13 @@
             <small class="text-white text-wrap text-center fs-4 mb-1">Inscrivez-vous et commencer votre recherche de collaborations</small>
         </div>
         <div class="col-md-6 right-box custom-form">
+            
             <form method="post" class="p-5 text-center">
+                {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    <h5>{{ message }}</h5>
+                </div>
+                {% endfor %}
             <h2>Inscription</h2>
             <br>
             {% csrf_token %}

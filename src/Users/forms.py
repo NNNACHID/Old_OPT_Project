@@ -23,6 +23,7 @@ class CustomUserCreationForm(UserCreationForm):
     user_type = forms.ChoiceField(
         choices=CustomUser.USER_TYPE_CHOICES,
         label="",
+        required=True,
         widget=forms.RadioSelect(
             attrs={"class": "form-check-input form-check-inline", "type": "radio"}
         ),

@@ -67,7 +67,9 @@
                         </div>
                         {% endif %}
                     </div>
-                    <p class="card-text">{{profile.short_description}}</p>
+                    {% if profile.short_description != None %}
+                    <p class="card-text mt-2">{{profile.short_description}}</p>
+                    {% endif %}
                     {% if profile.user != user %}
                     <a class="btn collaboration-button rounded-4 shadow-sm" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
@@ -81,16 +83,18 @@
         <div class="col-md-9 mb-3" id="main-description">
             <div class="card border-0 shadow rounded-4 ">
                 <div class="card-body special-color">
+                    {% if profile.main_description != None %}
                     <p class="card-text">{{profile.main_description}}</p>
-                    <button class="btn rate-button rounded-4 my-1" type="button" data-bs-toggle="collapse"
+                    {% endif %}
+                    <!-- <button class="btn rate-button rounded-4 my-1" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Je suis une marque
-                    </button>
+                    </button> -->
                     {% if profile.user != user %}
                     <a class="btn collaboration-button rounded-4 shadow-sm my-1" type="button"
-                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis un créateur</a>
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
                     {% endif %}
-                    <div class="collapse" id="collapseExample">
+                    <!-- <div class="collapse" id="collapseExample">
                         <div class="card card-body border-0">
                             <table class="table">
                                 <thead>
@@ -109,7 +113,7 @@
                             <a class="btn collaboration-button rounded-4 shadow-sm mt-2" type="button"
                                 href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Rejoindre ma campagne</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
