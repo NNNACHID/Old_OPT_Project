@@ -157,7 +157,7 @@ main {
 
 #second-hero{
   color: #ffffff;
-  font-size: 1.8em;
+  font-size: 1.5em;
   text-shadow: 1px 1px 2px rgb(121, 121, 121);
   min-height: 60vh;
   height: 100%;
@@ -168,7 +168,7 @@ main {
 
 #third-hero{
   color: #ffffff;
-  font-size: 1.5em;
+  font-size: 1.2em;
   min-height: 100vh;
   height: 100%;
   width: 100%;
@@ -182,7 +182,7 @@ main {
   width: 100%;
   color: #ffffff;
   text-shadow: 1px 1px 2px rgb(121, 121, 121);
-  font-size: 1.8em;
+  font-size: 1.5em;
   background: linear-gradient(rgba(116, 116, 116, 0.123), rgba(116, 116, 116, 0.123)),url("images/hero-background-2.png") no-repeat center;
   background-size: cover;
 }
@@ -191,7 +191,7 @@ main {
   min-height: 100vh;
   height: 100%;
   width: 100%;
-  font-size: 1.8em;
+  font-size: 1.5em;
   color: #37db73;
   background-color: #ffffff;
   background-size: cover;
