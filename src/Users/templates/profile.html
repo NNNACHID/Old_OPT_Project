@@ -79,12 +79,16 @@
             </div>
         </div>
     </div>
-    <div class="row mb-5 p-1">
+    <div class="row mb-5">
         <div class="col-md-9 mb-3" id="main-description">
             <div class="card border-0 shadow rounded-4 ">
                 <div class="card-body special-color">
-                    {% if profile.main_description != None %}
+                    {% if profile.main_description %}
                     <p class="card-text">{{profile.main_description}}</p>
+                    {% else %}
+                        {% if profile.user == user %}
+                            <p class="card-text">Remplissez votre description !</p>
+                        {% endif %}
                     {% endif %}
                     <!-- <button class="btn rate-button rounded-4 my-1" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
