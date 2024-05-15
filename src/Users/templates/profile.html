@@ -91,9 +91,9 @@
                         Je suis une marque
                     </button> -->
                     {% if profile.user != user %}
-                    <a class="btn collaboration-button rounded-4 shadow-sm my-1" type="button"
+                    <a class="btn collaboration-button rounded-4 shadow-sm my-1 mx-2" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis une marque</a>
-                    <a class="btn collaboration-button rounded-4 shadow-sm my-1" type="button"
+                    <a class="btn collaboration-button rounded-4 shadow-sm my-1 mx-2" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis un createur</a>
                     {% endif %}
                     <!-- <div class="collapse" id="collapseExample">
