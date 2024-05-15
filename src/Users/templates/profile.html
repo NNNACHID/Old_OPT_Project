@@ -92,7 +92,9 @@
                     </button> -->
                     {% if profile.user != user %}
                     <a class="btn collaboration-button rounded-4 shadow-sm my-1" type="button"
-                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis une marque</a>
+                    <a class="btn collaboration-button rounded-4 shadow-sm my-1" type="button"
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis un createur</a>
                     {% endif %}
                     <!-- <div class="collapse" id="collapseExample">
                         <div class="card card-body border-0">
