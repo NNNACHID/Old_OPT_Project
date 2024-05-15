@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid d-flex align-items-center justify-content-center text-white flex-column hero-land-page">
+    <div class="container d-flex align-items-center justify-content-center text-white flex-column">
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            <h5>{{ message }}</h5>
+        </div>
+        {% endfor %}
+        <h1 class="">Opt.</h1>
+        <h2 class="fw-bolder fs-2">Connectez votre créativité</h2>
+        <p class="text-center fw-bold">Découvrez la première plateforme de collaborations impactantes, où les créateurs de contenu, les annonceurs
+            et les
+            associations se réunissent pour une cause commune.</p>
+    </div>
+
+</div>
+<div class="container-fluid d-flex justify-content-center align-items-center fw-bolder text-center" id="second-hero">
+
+    <p class="fw-bolder">Bienvenue sur OPT,<br> l'endroit où l'innovation rencontre l'influence,<br> où les idées prennent vie et où les
+        collaborations
+        prennent une nouvelle dimension.</p>
+
+
+</div>
+<div class="container-fluid d-flex justify-content-center align-items-center text-center fw-bolder" id="third-hero">
+    <div class="col-md-6">
+        <p class="fw-bolder">Rejoignez-nous dans une communauté dynamique où la créativité rencontre l'engagement, où les opportunités de
+            partenariats se multiplient et où chaque collaboration compte. Que vous soyez un créateur de contenu
+            passionné,
+            une
+            marque en quête d'authenticité ou une association cherchant à faire entendre sa voix, OPT vous offre une
+            plateforme
+            puissante pour réaliser vos objectifs.</p>
+    </div>
+
+</div>
+<div class="container-fluid d-flex justify-content-center align-items-center fw-bolder text-center" id="fourth-hero">
+    <p class="fw-bolder">Explorez nos fonctionnalités intuitives,<br> connectez-vous avec des esprits similaires et débloquez des opportunités
+        inégalées pour étendre votre portée,<br> faire passer votre message plus loin et créer un impact réel.</p>
+</div>
+<div class="container-fluid d-flex justify-content-center fw-bolder align-items-center text-center " id="fifth-hero">
+    <div class="col-md-6 fw-bolder p-5">
+        <p class="fw-bolder">Avec OPT, chaque collaboration est une opportunité de changer le monde.
+            Prêt à faire partie de quelque chose de plus grand ?<br><br> Rejoignez-nous dès aujourd'hui et découvrez comment
+            ensemble, nous
+            pouvons transformer des idées en actions et inspirer le changement.</p>
+            <br>
+        <a href="{% url 'users:register' %}" class="login-button text-decoration-none shadow-sm border-0 fs-2">Inscription</a>
+    </div>
+    
+</div>
+{% endblock %}

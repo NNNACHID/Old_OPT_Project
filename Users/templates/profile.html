@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container content-container text-center">
+    <div class="row mt-5 mb-3 justify-content-center p-1">
+        <div class="col-md mt-5 p-1">
+            <div class="card shadow-lg border-0 rounded-5">
+                <img src="{{ profile.banner.url }}" class="card-img-top banner rounded-top-5" alt="...">
+                <img src="{{ profile.profile_picture.url }}" alt="img-thumbnail"
+                    class="img-thumbnail rounded-circle position-absolute top-50 start-50 translate-middle shadow"
+                    id="profile_picture">
+                <div class="card-body mt-5 special-color">
+                    <h5 class="card-title">{{profile.user.username}}</h5>
+                    <div class="row justify-content-center g-0">
+                        {% if profile.instagram_url %}
+                        <div class="col social-logo-container">
+                            <a href="{{profile.instagram_url}}">
+                                <img src="{% static 'images/instagram.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% else %}
+                            <div class="col social-logo-container-blank">
+                                
+                            </div>
+                        {% endif %}
+                        {% if profile.x_url %}
+                        <div class="col social-logo-container">
+                            <a href="{{profile.x_url}}">
+                                <img src="{% static 'images/x.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.youtube_channel_url %}
+                        <div class="col social-logo-container">
+                            <a href="{{profile.youtube_channel_url}}">
+                                <img src="{% static 'images/youtube.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.twitch_url %}
+                        <div class="col social-logo-container">
+                            <a href="{{profile.twitch_url}}">
+                                <img src="{% static 'images/twitch.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.tiktok_url %}
+                        <div class="col social-logo-container">
+                            <a href="{{profile.tiktok_url}}">
+                                <img src="{% static 'images/tiktok.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.snapchat_url %}
+                        <div class="col social-logo-container">
+                            <a href="{{profile.snapchat_url}}">
+                                <img src="{% static 'images/snapchat.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% if profile.contact_mail %}
+                        <div class="col social-logo-container">
+                            <a href="{{profile.contact_mail}}">
+                                <img src="{% static 'images/contact_mail.png' %}" alt="Logo Instagram" class="social-logo">
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% if profile.short_description != None %}
+                    <p class="card-text mt-2">{{profile.short_description}}</p>
+                    {% endif %}
+                    {% if profile.user != user %}
+                    <a class="btn collaboration-button rounded-4 shadow-sm" type="button"
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
+                    {% endif %}
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-9 mb-3" id="main-description">
+            <div class="card border-0 shadow rounded-4 ">
+                <div class="card-body special-color">
+                    {% if profile.main_description %}
+                    <p class="card-text">{{profile.main_description}}</p>
+                    {% else %}
+                        {% if profile.user == user %}
+                            <p class="card-text">Remplissez votre description !</p>
+                        {% endif %}
+                    {% endif %}
+                    <!-- <button class="btn rate-button rounded-4 my-1" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Je suis une marque
+                    </button> -->
+                    {% if profile.user != user %}
+                    <a class="btn collaboration-button rounded-4 shadow-sm my-1 mx-2" type="button"
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis une marque</a>
+                    <a class="btn collaboration-button rounded-4 shadow-sm my-1 mx-2" type="button"
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis un createur</a>
+                    {% endif %}
+                    <!-- <div class="collapse" id="collapseExample">
+                        <div class="card card-body border-0">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for service in profile.services %}
+                                    <tr>
+                                        <th scope="row">{{ service.name }}</th>
+                                        <td>{{ service.price }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <a class="btn collaboration-button rounded-4 shadow-sm mt-2" type="button"
+                                href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Rejoindre ma campagne</a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3" id="advertisers-content">
+            <div class="card border-0 shadow rounded-4 mb-5 ">
+                <div class="card-body">
+                    <h1 class="publireportage-title">OPT.</h1>
+                    <p class="fw-bold p-3 publireportage-text">Découvrez la première plateforme de collaborations impactantes, où les créateurs de contenu, les annonceurs et les
+                    associations se réunissent pour une cause commune.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+<div class="container content-container d-flex justify-content-center align-content-center mt-5 p-5">
+
+    
+    <div class="row border-0 rounded-5 shadow p-3 box-area mx-1 mt-5">
+        
+        <div class="col-md-6 right-box custom-form">
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                <h5>{{ message }}</h5>
+            </div>
+            {% endfor %}
+            <form method="post" class="p-5 text-center">
+                <h2>Login</h2>
+                <br>
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="input-group mb-3 ">
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <div class="mb-3 d-flex justify-content-center ">
+                    <button type="submit" class="btn text-decoration-none register-button rounded">Se connecter</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 left-box rounded-4 d-flex justify-content-center align-items-center flex-column banner-container">
+            <div class="form-banner mb-3">
+                <img id="login-banner" src="{% static '/images/key_loggin.png' %}" class="img-fluid" alt=""
+                    style="width: 240px">
+            </div>
+            <p class="text-white fs-1">Bonjour !</p>
+            <small class="text-white text-wrap text-center fs-4 mb-1">Connectez-vous pour avoir accès à la plateforme</small>
+            <br>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container content-container d-flex justify-content-center">
+    <div class="col mt-5 d-flex justify-content-center ">
+        <form method="post" enctype="multipart/form-data" class="p-5  mt-5">
+            {% csrf_token %}
+            {{ user_form.non_field_errors }}
+            {{ profile_form.non_field_errors }}
+            <div class="row rounded-5 shadow p-3 mb-3 custom-form-card border-0">
+                <div class="mb-3">
+                    <label for="{{ user_form.username.id_for_label }}" class="form-label fw-bold">Nom d'utilisateur :</label>
+                    {{ user_form.username }}
+                    {{ user_form.username.errors }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ user_form.email.id_for_label }}" class="form-label fw-bold">Adresse email :</label>
+                    {{ user_form.email }}
+                    {{ user_form.email.errors }}
+                </div>
+            </div>
+            <div class="row rounded-5 shadow p-3 mb-3 custom-form-card">
+                <div class="mb-3">
+                    <label for="{{ profile_form.short_description.id_for_label }}" class="form-label fw-bold">Description courte :</label>
+                    {{ profile_form.short_description }}
+                    {{ profile_form.short_description.errors }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ profile_form.main_description.id_for_label }}" class="form-label fw-bold">Description principale:</label>
+                    {{ profile_form.main_description }}
+                    {{ profile_form.main_description.errors }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ profile_form.profile_picture.id_for_label }}" class="form-label fw-bold">Image de profil :</label>
+                    {{ profile_form.profile_picture }}
+                    {{ profile_form.profile_picture.errors }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ profile_form.banner.id_for_label }}" class="form-label fw-bold">Bannière :</label>
+                    {{ profile_form.banner }}
+                    {{ profile_form.banner.errors }}
+                </div>
+            </div>
+            <div class="row rounded-5 shadow p-3 mb-3 custom-form-card">
+                
+                    <div class="mb-3">
+                        <label for="{{ service_form.first_prestation.id_for_label }}" class="form-label fw-bold">Premiere prestation
+                            :</label>
+                        {{ service_form.first_prestation }}
+                        {{ service_form.first_prestation.errors }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ service_form.first_prestation_price.id_for_label }}" class="form-label fw-bold">Tarif:</label>
+                        {{ service_form.first_prestation_price }}
+                        {{ service_form.first_prestation_price.errors }}
+                    </div>
+                
+                
+                <div class="mb-3">
+                    <label for="{{ service_form.second_prestation.id_for_label }}" class="form-label fw-bold">Seconde prestation
+                        :</label>
+                    {{ service_form.second_prestation }}
+                    {{ service_form.second_prestation.errors }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ service_form.second_prestation_price.id_for_label }}" class="form-label fw-bold">Tarif
+                        :</label>
+                    {{ service_form.second_prestation_price }}
+                    {{ service_form.second_prestation_price.errors }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ service_form.third_prestation.id_for_label }}" class="form-label fw-bold">Troisieme prestation :</label>
+                    {{ service_form.third_prestation }}
+                    {{ service_form.third_prestation.errors }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ service_form.third_prestation_price.id_for_label }}" class="form-label fw-bold">Tarif
+                        :</label>
+                    {{ service_form.third_prestation_price }}
+                    {{ service_form.third_prestation_price.errors }}
+                </div>
+            </div>
+            <div class="row rounded-5 shadow p-3 mb-3 custom-form-card">
+                <div class="mb-3 rounded">
+                    <label for="{{ user_form.instagram_url.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.instagram_url }}
+                    {{ profile_form.instagram_url.errors }}
+                </div>
+                <div class="mb-3 rounded">
+                    <label for="{{ profile_form.x_url.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.x_url }}
+                    {{ profile_form.x_url.errors }}
+                </div>
+                <div class="mb-3 rounded">
+                    <label for="{{ profile_form.youtube_channel_url.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.youtube_channel_url }}
+                    {{ profile_form.youtube_channel_url.errors }}
+                </div>
+                <div class="mb-3 rounded">
+                    <label for="{{ profile_form.twitch_url.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.twitch_url }}
+                    {{ profile_form.twitch_url.errors }}
+                </div>
+                <div class="mb-3 rounded">
+                    <label for="{{ profile_form.tiktok_url.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.tiktok_url }}
+                    {{ profile_form.tiktok_url.errors }}
+                </div>
+                <div class="mb-3 rounded">
+                    <label for="{{ profile_form.snapchat_url.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.snapchat_url }}
+                    {{ profile_form.snapchat_url.errors }}
+                </div>
+                <div class="mb-3 rounded">
+                    <label for="{{ profile_form.contact_mail.id_for_label }}" class="form-label"></label>
+                    {{ profile_form.contact_mail }}
+                    {{ profile_form.contact_mail.errors }}
+                </div>
+
+                <button type="submit" class="btn mx-auto register-button rounded-4 shadow-sm fw-bold">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
