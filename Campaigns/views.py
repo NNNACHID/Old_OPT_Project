@@ -49,11 +49,12 @@ def create_campaign(request, collaborator_id=None):
 
 
 @login_required(login_url="users:login")
-def get_campaigns_list(request):
+def get_campaigns_list(request, pk):
 
     campaigns_with_collaborators = []
-    user = request.user
-
+    user = pk
+    campaigns_created = Campaign.objects.filter(user=user) 
+    
     for campaign in Campaign.objects.all():
         if campaign.campaign_creator == user or user in campaign.collaborators.all():
             campaign_data = {
@@ -129,3 +130,12 @@ def refuse_campaign_collaborator_request(request, pk):
     request_obj = CampaignCollaboratorRequest.objects.get(pk=pk)
     request_obj.decline()
     return redirect("campaigns:campaigns_list")
+
+
+def get_other_campaigns_list(resuest):
+    
+    
+    
+    
+    
+    return render(request, "campaigns_list.html", context)

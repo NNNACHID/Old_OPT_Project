@@ -9,10 +9,12 @@ __pycache__/
 .env
 /.vscode
 /.idea
+/venv
 
 # Ignore Django-generated media files
 /media/
 /static/
+/static_root/
 
 # Ignore IDE backup files
 *.swp
