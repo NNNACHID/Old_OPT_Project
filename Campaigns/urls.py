@@ -14,7 +14,7 @@ urlpatterns = [
         create_campaign,
         name="campaign_creation",
     ),
-    path("campaigns_list", get_campaigns_list, name="campaigns_list"),
+    path("campaigns_list/<int:pk>/", get_campaigns_list, name="campaigns_list"),
     path(
         "campaigns_participate_list",
         get_campaigns_participate_list,
