@@ -54,13 +54,12 @@ def get_campaigns_list(request, pk):
     campaigns_with_collaborators = []
     user = pk
     campaigns_created = Campaign.objects.filter(campaign_creator=user)
-    collabs = []
+    collabs = Campaign.collaborators.through.objects.filter(customuser_id=pk)
     
-    for collab in Campaign.collaborators.through.objects.filter(customuser_id=pk):
-        collabs.append(collab)
-        
-    print(collabs[0].customuser_id)
-    
+    if collabs:
+        for collab in Campaign.collaborators.through.objects.filter(customuser_id=pk):
+            print(collab)
+
     for campaign in Campaign.objects.all():
         if campaign.campaign_creator == user or user in campaign.collaborators.all():
             campaign_data = {
