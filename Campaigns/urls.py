@@ -16,23 +16,27 @@ urlpatterns = [
     ),
     path("campaigns_list/<int:pk>/", get_campaigns_list, name="campaigns_list"),
     path(
-        "campaigns_participate_list",
+        "campaigns_participate_list/<int:pk>/",
         get_campaigns_participate_list,
         name="campaigns_participate_list",
     ),
     path(
-        "campaigns_created_list",
+        "campaigns_created_list/<int:pk>/",
         get_campaigns_created_list,
         name="campaigns_created_list",
     ),
-    path("campaign/<int:pk>/", get_campaign_page, name="campaign_page"),
+    path(
+        "campaign/<int:campaign_pk>/<int:campaign_user_pk>/",
+        get_campaign_page,
+        name="campaign_page",
+    ),
     path(
         "campaigns_requests_list",
         campaign_collaborator_requests,
         name="campaigns_requests_list",
     ),
     path(
-        "accept_campaign_collaborator_request/<int:pk>/",
+        "accept_campaign_collaborator_request/<int:request_id>/",
         accept_campaign_collaborator_request,
         name="accept_campaign_collaborator_request",
     ),

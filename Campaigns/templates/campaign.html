@@ -2,21 +2,26 @@
 
 {% block content %}
 <div class="container content-container mt-5 p-4">
-    <div class="row justify-content-center align-items-center align-self-center border-0 shadow rounded-5 mt-5 campaigns-container p-4">
+    <div
+        class="row justify-content-center align-items-center align-self-center border-0 shadow rounded-5 mt-5 campaigns-container p-4">
         <div>
-            <a class="text-decoration-none" href="{% url 'campaigns:campaigns_list' %}">Retour</a>
+            <a class="text-decoration-none nav-link"
+                href="{% url 'campaigns:campaigns_list' campaign_page_user.pk %}">Retour</a>
         </div>
         <div class="card my-2 campaigns-cards shadow text-center">
-                    <h5 class="card-header">{{ campaign.name }}</h5>
-                    <div class="card-body ">
-                        <h5 class="card-title">Collaborateurs :</h5>
-                        <ul>
-                            {% for collaborator in collaborators %}
-                            <li>{{ collaborator.username }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
+            <h3 class="card-header">{{ campaign.name }}</h3>
+            <div class="card-body">
+                <p>Date de départ: {{ campaign.start_date }}</p>
+                <p>Date de fin: {{ campaign.end_date }}</p>
+                <p>Budget: {{ campaign.budget }}</p>
+                <p>Description: {{ campaign.description }}</p>
+                <h5 class="card-title">Createur : {{ campaign.campaign_creator }}</h5>
+                <h5 class="card-title">Collaborateurs :</h5>
+                {% for collaborator in collaborators %}
+                <p>{{ collaborator.username }}</p>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

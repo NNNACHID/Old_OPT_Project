@@ -53,3 +53,6 @@ class CampaignCollaboratorRequest(models.Model):
     def decline(self):
         self.campaign.remove_collaborator(self.collaborator)
         self.delete()
+
+class CampaignPayment(models.Model):
+    pass

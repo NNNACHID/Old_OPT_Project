@@ -1,32 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container content-container mt-5 p-4">
+    <div class="container mt-5 p-4">
         
         <div class="row justify-content-center align-items-center align-self-center border-0 shadow rounded-5 mt-5 campaigns-container p-3">
             <div class="col-md-2 justify-content-center align-self-start p-3">
                 <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de collaboration</a>
+                    <li class="nav-item my-2">
+                        <a class="text-decoration-none" href="{% url 'campaigns:campaigns_created_list' campaign_page_user.pk %}">Campagnes créées</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'campaigns:campaigns_created_list' %}">Campagnes créées</a>
+                    <li class="nav-item my-2">
+                        <a class="text-decoration-none" href="{% url 'campaigns:campaigns_participate_list' campaign_page_user.pk %}">Campagnes participées</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'campaigns:campaigns_participate_list' %}">Campagnes participées</a>
+                    {% if campaign_page_user == user %}
+                    <li class="nav-item my-2">
+                        <a class="text-decoration-none" aria-current="page" href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de
+                            collaboration</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'campaigns:campaign_creation' %}">Créer une campagne</a>
+                    <li class="nav-item my-2">
+                        <a class="text-decoration-none" href="{% url 'campaigns:campaign_creation' %}">Créer une campagne</a> 
                     </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-md-10">
                 {% for campaign_data in campaigns_with_collaborators %}
                 <div class="row justify-content-center">
-                    <a href="{% url 'campaigns:campaign_page' campaign_data.campaign.pk %}" class="text-decoration-none">
+                    <a href="{% url 'campaigns:campaign_page' campaign_pk=campaign_data.campaign.pk campaign_user_pk=campaign_page_user.pk %}" class="text-decoration-none">
                     <div class="card my-2 campaigns-cards shadow">
                         <h3 class="card-header fw-bold">{{ campaign_data.campaign.name }}</h3>
                         <div class="card-body">
+                            <h5 class="card-title">Createurs : {{ campaign_data.campaign.campaign_creator }} </h5>
+                            <h5 class="card-title">Budget : {{ campaign_data.campaign.budget }} </h5>
                             <h5 class="card-title">Collaborateurs :</h5>
                                 <ul class="">
                                     {% for collaborator in campaign_data.collaborators %}

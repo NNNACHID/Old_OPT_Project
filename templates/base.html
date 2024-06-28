@@ -22,12 +22,14 @@
 
 <body>
     <nav class="navbar navbar-expand-md shadow-lg fixed-top">
-        <div class="container-fluid">
+        <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                  aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-                <a class="navbar-brand me-auto" href="{% url 'home' %}">Opt.</a>
+                <a class="" href="{% url 'home' %}">
+                <img src="{% static './images/logo_opt.png' %}" class="navbar-brand me-auto img-fluid" href="{% url 'home' %}"alt="">
+                </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 {% if user.is_authenticated %}
                 <ul class="navbar-nav mx-auto">
@@ -43,13 +45,16 @@
                     <li class="nav-item">
                         <a class="nav-link mx-lg-4" href="{% url 'users:associations' %}">Associations</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'users:login' %}" class="nav-link mx-lg-4">Connexion</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 {% if user.is_authenticated %}
                 {% else %}
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="{% url 'users:login' %}" class="nav-link ">Connexion</a>
-                    </li>
                     <li class="nav-item mt-2">
                         <a href="{% url 'users:register' %}" class="login-button text-decoration-none shadow-sm border-0">Inscription</a>
                     </li>
@@ -66,13 +71,13 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end p-3">
                     <ul class="list-unstyled">
-                        <li class="nav-item"><a class="nav-link opt-nav-link text-uppercase" href="{% url 'users:profile' user.pk %}">{{user.username}}</a></li>
-                        <li class-="nav-item"><a class="nav-link opt-nav-link"
+                        <li class="nav-item"><a class="text-decoration-none text-uppercase" href="{% url 'users:profile' user.pk %}">{{user.username}}</a></li>
+                        <li class-="nav-item"><a class="text-decoration-none"
                                 href="{% url 'users:account' %}">Paramètres</a>
                         </li>
-                        <li class-="nav-item"><a class="nav-link opt-nav-link" href="{% url 'campaigns:campaigns_list' user.pk%}">Campagnes</a>
+                        <li class-="nav-item"><a class="text-decoration-none" href="{% url 'campaigns:campaigns_list' user.pk%}">Campagnes</a>
                         </li>
-                        <li class-="nav-item"><a class="nav-link opt-nav-link"
+                        <li class-="nav-item"><a class="text-decoration-none"
                                 href="{% url 'users:logout' %}">Déconnexion</a></li>
                     </ul>
                 </div>
@@ -89,12 +94,31 @@
     </main>
 
     <footer class="py-5 shadow-lg">
-        <div class="container text-center">
-            <div class="row justify-content-center">
-                <div class="col-md-6 fw-bold">
-                    
-                    <br>
-                    <p>contact-opt@protonmail.com</p>
+        <div class="container-fluid text-start">
+            <div class="row justify-content-center px-5">
+                <div class="col-lg-4 my-5 order-3 order-md-1 mx-auto">
+                    <a class="" href="{% url 'home' %}">
+                        <img src="{% static './images/logo_opt.png' %}" class="footer-logo me-auto img-fluid" href="{% url 'home' %}"
+                            alt="">
+                    </a>
+                </div>
+                <div class="col-lg-4 fw-bold my-5 order-1 order-md-2 ">
+                    <h4>À propos</h4>
+                    <p><a class="text-decoration-none" href="#">Qui sommes-nous ?</a></p>
+                    <p><a class="text-decoration-none" href="#">Informations légales</a></p>
+                    <p><a class="text-decoration-none" href="#">Conditions d'utilisation</a></p>
+                    <p><a class="text-decoration-none" href="#">Politique de confidentialité</a></p>
+                    <p><a class="text-decoration-none" href="#">Contact</a></p>
+                </div>
+                <div class="col-lg-4 my-5 fw-bold order-2 order-md-3 ">
+                    <h4>Menu</h4>
+                    <p><a class="text-decoration-none" href="#">Créateurs</a></p>
+                    <p><a class="text-decoration-none" href="#">Annonceurs</a></p>
+                    <p><a class="text-decoration-none" href="#">Associtaions</a></p>
+                    {% if user.is_authenticated %}
+                    {% else %}
+                    <p><a class="text-decoration-none" href="#">Connexion</a></p>
+                    {% endif %}
                 </div>
                 
             </div>

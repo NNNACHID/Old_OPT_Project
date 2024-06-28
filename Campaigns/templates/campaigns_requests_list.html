@@ -8,18 +8,19 @@
         <div class="col-md-2 justify-content-center align-self-start p-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'campaigns:campaigns_list' %}">Retour</a>
+                    <a class="nav-link" href="{% url 'campaigns:campaigns_list' campaign_page_user.pk %}">Retour</a>
                 </li>
             </ul>
         </div>
         <div class="col-md-10">
             {% for request in requests %}
-            <a href="{% url 'campaigns:campaign_page' request.campaign.pk %}" class="text-decoration-none">
+            <a href="{% url 'campaigns:campaign_page' campaign_pk=request.campaign.pk campaign_user_pk=campaign_page_user.pk %}" class="">
             <div class="row justify-content-center">
-                <div class="col-md-6 mb-3 rounded-5 shadow text-center campaigns-cards p-3">
+                <div class="col-md-6 mb-3 rounded-5 shadow text-center campaigns-cards p-3 text-decoration-none">
                     <h2>{{ request.campaign.name }}</h2>
-                    <h5>{{ request.camapign.description }}</h5>
-                    <a href="{% url 'campaigns:accept_campaign_collaborator_request' request.id %}" class="btn request-campaign-button shadow-sm">Accepter</a>
+                    <span>{{ request.camapign.description }}</span>
+                    <h5>{{ request.campaign.budget }}</h5>
+                    <a href="{% url 'campaigns:accept_campaign_collaborator_request' request.id %}" class="btn request-campaign-button shadow-sm mr-2">Accepter</a>
                     <a href="{% url 'campaigns:refuse_campaign_collaborator_request' request.id %}" class="btn request-campaign-button shadow-sm ml-2">Refuser</a>
                 </div>
             </div>
