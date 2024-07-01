@@ -12,9 +12,7 @@ __pycache__/
 /venv
 
 # Ignore Django-generated media files
-/media/
-/static/
-/static_root/
+
 
 # Ignore IDE backup files
 *.swp
