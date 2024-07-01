@@ -26,5 +26,6 @@ urlpatterns = [
     path("", home, name="home"),
     path("users/", include("Users.urls")),
     path("campaigns/", include("Campaigns.urls")),
-    path("admin/", admin.site.urls),
+    path("payments/", include("payments.urls")),
+    path("admin/", admin.site.urls)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

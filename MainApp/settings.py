@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "Users.apps.UsersConfig",
     "Campaigns.apps.CampaignsConfig",
+    "payments.apps.PaymentsConfig",
     "crispy_forms",
     "crispy_bootstrap5",
     "formtools",
