@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+{{ wizard.form.media }}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container content-container d-flex justify-content-center align-content-center mt-3 pt-5">
+    <div class="col-md-6 border-0 rounded-5 shadow p-3 box-area mx-1 my-5">
+        <div class="campaign-creation-card-header p-3 rounded-4 mb-1">
+            <h2 class="ml-2 text-decoration-underline fw-bold">Créer une campagne</h2>
+            <p>Suivez les étapes afin de créée votre campagne</p>
+        </div>
+        <br>
+        <p class="text-center">Étape {{ wizard.steps.step1 }} sur {{ wizard.steps.count }}</p>
+        <form action="" method="post" class="mt-5">{% csrf_token %}
+            <table>
+                {{ wizard.management_form }}
+                {% if wizard.form.forms %}
+                {{ wizard.form.management_form }}
+                {% for form in wizard.form.forms %}
+                {{ form|crispy }}
+                {% endfor %}
+                {% else %}
+                {{ wizard.form|crispy }}
+                {% endif %}
+            </table>
+            {% if wizard.steps.current == '2' %}
+            <div class="row mx-5">
+                <h6 class="text-center">Définissez une fourchette de prix :</h6>
+                <div class="d-flex justify-content-between">
+                    <span id="price-min-value">200</span>  <span id="price-max-value">800</span>
+                </div>
+                <div class="mb-5" id="price-range"></div>
+                <!-- Ajout des champs cachés -->
+                <!-- <input type="hidden" id="id_price_min" name="min_price" value="200">
+                <input type="hidden" id="id_price_max" name="max_price" value="800"> -->
+            </div>
+            {% endif %}
+            {% if wizard.steps.current == wizard.steps.last %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"
+                class="btn text-decoration-none campaign-creation-button rounded">{% translate "prev step"%}</button>
+            <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Valider !</button>
+            {% else %}
+                {% if wizard.steps.prev %}
+                    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"class="btn text-decoration-none campaign-creation-button rounded">{% translate "prev step"%}</button>
+                    <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Étape suivante</button>
+                {% else %}
+                    <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Étape suivante</button>
+                {% endif %}
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+            var priceRangeSlider = document.getElementById('price-range');
+
+            noUiSlider.create(priceRangeSlider, {
+                start: [200, 800],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': 1000
+                }
+            });
+
+            var priceMinValue = document.getElementById('price-min-value');
+            var priceMaxValue = document.getElementById('price-max-value');
+            var priceMinInput = document.getElementById('id_price_min');
+            var priceMaxInput = document.getElementById('id_price_max');
+
+            priceRangeSlider.noUiSlider.on('update', function (values, handle) {
+                if (handle) {
+                    priceMaxValue.textContent = Math.round(values[handle]);
+                    priceMaxInput.value = Math.round(values[handle]);
+                } else {
+                    priceMinValue.textContent = Math.round(values[handle]);
+                    priceMinInput.value = Math.round(values[handle]);
+                }
+            });
+
+            var values = priceRangeSlider.noUiSlider.get();
+            priceMinValue.textContent = Math.round(values[0]);
+            priceMaxValue.textContent = Math.round(values[1]);
+        }); 
+</script>
+{% endblock %}

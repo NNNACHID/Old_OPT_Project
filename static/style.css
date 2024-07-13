@@ -331,7 +331,7 @@ textarea:focus {
 
 /************USERS LIST****************/
 .card-container {
-  background-color: #59ef99;
+  
 }
 
 .user-card {
@@ -460,7 +460,26 @@ textarea:focus {
 
 .campaign-creation-card-header {
   color: #ffffff;
+  background-color: #091c0f;
 }
+
+.campaign-creation-button {
+  color: #f0fdf5;
+  background-color: #091c0f;
+  transition: 0.3s background-color;
+  min-width: 90px;
+  max-width: 250px;
+}
+
+.campaign-creation-button:hover {
+  background-color: #183a23;
+  color: #f0fdf5;
+}
+
+.noUi-connect {
+  background: #091c0f !important;
+}
+
 
 .campaigns-container {
   color: #4d4d4d;
@@ -506,9 +525,18 @@ textarea:focus {
 }
 
 .request-campaign-button {
-  color: #ffffff;
-  border: #ffffff 3px solid;
+  color: #ffffff !important;
+  background-color: #58926D;
+  transition: 0.5s ease-in-out;
 }
+
+.request-campaign-button:hover {
+  color: #58926D !important;
+  background-color: #ffffff;
+}
+
+
+
 
 /*******************FOOTER*******************/
 
