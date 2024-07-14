@@ -76,7 +76,7 @@ class CampaignCreationStepThreeForm(forms.ModelForm):
     # min_price = forms.IntegerField(label="Minimum Price", widget=forms.HiddenInput())
     # max_price = forms.IntegerField(label="Maximum Price", widget=forms.HiddenInput())
 
-class CampaignJoinForm(forms.Form):
+class CampaignJoiningStepOneForm(forms.Form):
 
     price = forms.IntegerField(
         label="Choisissez un prix",
@@ -86,11 +86,31 @@ class CampaignJoinForm(forms.Form):
             attrs={
                 "class": "form-range mx-auto",
                 "type": "range",
-                "min": "300",
-                "max": "1000",
-                "value": "300",
                 "id": "price-slider",
                 "oninput": "rangeValue.innerText = this.value"
             }
         ),
     )
+
+    def __init__(self, *args, **kwargs):
+        min_price = kwargs.pop("min_price", 300)
+        max_price = kwargs.pop("max_price", 1000)
+        super(CampaignJoiningStepOneForm, self).__init__(*args, **kwargs)
+        self.fields["price"].min_value = min_price
+        self.fields["price"].max_value = max_price
+        self.fields["price"].widget.attrs.update(
+            {
+                "min": min_price,
+                "max": max_price,
+                "value": (max_price - min_price) / 2,
+            }
+        )
+
+class CampaignJoiningStepTwoForm(forms.Form):
+    pass
+
+class CampaignJoiningStepThreeForm(forms.Form):
+    pass
+
+class CampaignJoiningStepFourForm(forms.Form):
+    pass

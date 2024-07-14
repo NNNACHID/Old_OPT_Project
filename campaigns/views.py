@@ -10,13 +10,17 @@ from campaigns.forms import *
 
 from formtools.wizard.views import SessionWizardView
 
+CREATION_FORMS = [
+    CampaignCreationStepOneForm,
+    CampaignCreationStepTwoForm,
+    CampaignCreationStepThreeForm,
+]
 
-class CampaignWizardView(SessionWizardView):
-    form_list = [
-        CampaignCreationStepOneForm,
-        CampaignCreationStepTwoForm,
-        CampaignCreationStepThreeForm,
-    ]
+JOINING_FORMS = []
+
+
+class CampaignCreationWizardView(SessionWizardView):
+    form_list = CREATION_FORMS
     template_name = "campaign_creation.html"
 
     def done(self, form_list, **kwargs):
@@ -35,10 +39,12 @@ class CampaignWizardView(SessionWizardView):
         messages.success(self.request, "Campagne créée avec succès!")
         return redirect("home")
 
+class CampaignJoiningWizardView(SessionWizardView):
+    form_list = JOINING_FORMS
 
 @login_required(login_url="users:login")
 def create_campaign(request, collaborator_id=None):
-    wizard_view = CampaignWizardView.as_view()
+    wizard_view = CampaignCreationWizardView.as_view()
     return wizard_view(request, collaborator_id=collaborator_id)
 
 
