@@ -25,22 +25,19 @@
             </div>
             <div class="col-md-10">
                 {% for campaign_data in campaigns_with_collaborators %}
-                <div class="row justify-content-center rounded-5">
-                    <a href="{% url 'campaigns:campaign_page' campaign_pk=campaign_data.campaign.pk campaign_user_pk=campaign_page_user.pk %}" class="text-decoration-none">
-                    <div class="card my-2 campaigns-cards">
-                        <h3 class="card-header campaign-card-header fw-bold">{{ campaign_data.campaign.name }}</h3>
-                        <div class="card-body">
-                            <h5 class="card-title">Createurs : {{ campaign_data.campaign.campaign_creator }} </h5>
-                            <h5 class="card-title">Budget : {{ campaign_data.campaign.budget }} </h5>
-                            <h5 class="card-title">Collaborateurs :</h5>
-                                <ul class="">
-                                    {% for collaborator in campaign_data.collaborators %}
-                                    <li>{{ collaborator.username }}</li>
-                                    {% endfor %}
-                                </ul>
+                <div class="card ms-4 mb-2 campaigns-cards rounded-4 shadow-lg">
+                    <div class="card-body campaign-card-body text-center rounded-top-4">
+                        <h3 class="text-capitalize fw-bolder text-start m-0">{{ campaign_data.campaign.name }}</h3>
+                        <p class="ms-1 text-start">Createur : {{ campaign_data.campaign.campaign_creator }}</p>
+                        <div class="d-flex mt-6 fw-bold">
+                            <p class=" me-5">Date de début : {{ campaign_data.campaign.start_date}} </p>
+                            <p>Date de de fin : {{ campaign_data.campaign.end_date}} </p>
                         </div>
                     </div>
-                    </a>
+                    <div class="campaigns-card-footer rounded-bottom-4 pt-3 ps-3">
+                        <a class="btn request-campaign-button mx-auto mb-2"
+                            href="{% url 'campaigns:campaign_page' campaign_pk=campaign_data.campaign.pk campaign_user_pk=campaign_page_user.pk %}" role="button">Détail</a>
+                    </div>
                 </div>
                 {% empty %}
                 <p>Aucune campagne pour le moment</p>

@@ -20,13 +20,7 @@ html {
 
 body {
   /* background-color: #59ef99; */
-  background: rgb(233, 233, 233);
-  background: linear-gradient(
-    0deg,
-    rgba(233, 233, 233, 1) 0%,
-    rgba(205, 205, 205, 1) 50%,
-    rgba(233, 233, 233, 1) 100%
-  );
+  background: #eeeeee;
   width: 100vw;
   min-height: 100vh;
 }
@@ -50,7 +44,7 @@ body {
 }
 .navbar-brand {
   max-width: 80px;
-  max-height: 60px;
+  max-height: 45px;
   transition: 0.3s;
   filter: brightness(0) saturate(100%) invert(87%) sepia(53%) saturate(583%)
     hue-rotate(69deg) brightness(101%) contrast(87%);
@@ -65,7 +59,7 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 18px;
+  font-size: 12px;
   color: #ffffff;
   position: relative;
 }
@@ -107,7 +101,7 @@ body {
   max-height: 60px;
 }
 .login-dropdown .dropdown-menu {
-  background-color: #59ef99;
+  background-color: #ffffff;
 }
 
 .login-dropdown a {
@@ -331,20 +325,20 @@ textarea:focus {
 
 /************USERS LIST****************/
 .card-container {
-  
+  background-color: #ffffff;
 }
 
 .user-card {
   max-height: 380px !important;
-  min-height: 120px;
-  background-color: #091c0f;
-  color: #ffffff;
-  border-color: #59ef99;
+  min-height: 90px;
+  background-color: #ffffff;
+  color: #000000;
+  /* border-color: #59ef99; */
   transition: 0.6s;
 }
 
 .user-card:hover {
-  background-color: #183a23;
+  background-color: #eeeeee;
 }
 
 .user-thumbnail {
@@ -394,8 +388,8 @@ textarea:focus {
 }
 
 .card {
-  background-color: #091c0f;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .card-body img {
@@ -418,12 +412,13 @@ textarea:focus {
 }
 
 .collaboration-button {
-  background-color: #22c45e;
-  color: #59ef99;
+  background-color: #59ef99;
+  color: #ffffff;
 }
 
 .collaboration-button:hover {
   background-color: #37db73;
+  color: #ffffff;
 }
 
 .rate-button {
@@ -440,14 +435,14 @@ textarea:focus {
 
 .publireportage-title {
   font-weight: 690;
-  color: #ffffff;
+  color: #000000;
   font-size: 60px;
   font-family: "Roundo", sans-serif;
   font-style: normal;
 }
 
 .publireportage-text {
-  color: #ffffff;
+  color: #000000;
   font-size: 21px;
 }
 
@@ -460,19 +455,19 @@ textarea:focus {
 
 .campaign-creation-card-header {
   color: #ffffff;
-  background-color: #091c0f;
+  background-color: #59ef99;
 }
 
 .campaign-creation-button {
   color: #f0fdf5;
-  background-color: #091c0f;
+  background-color: #59ef99;
   transition: 0.3s background-color;
   min-width: 90px;
   max-width: 250px;
 }
 
 .campaign-creation-button:hover {
-  background-color: #183a23;
+  background-color: #37db73;
   color: #f0fdf5;
 }
 
@@ -480,10 +475,8 @@ textarea:focus {
   background: #091c0f !important;
 }
 
-
 .campaigns-container {
   color: #4d4d4d;
-  background-color: #f7f7f7;
 }
 
 .campaigns-container a {
@@ -515,6 +508,7 @@ textarea:focus {
     rgba(49, 79, 57, 1) 100%,
     rgba(140, 241, 179, 1) 100%
   );
+  color: #ffffff;
 }
 
 .campaigns-card-footer {
@@ -526,17 +520,25 @@ textarea:focus {
 
 .request-campaign-button {
   color: #ffffff !important;
-  background-color: #58926D;
+  background-color: #58926d;
   transition: 0.5s ease-in-out;
 }
 
 .request-campaign-button:hover {
-  color: #58926D !important;
+  color: #58926d !important;
   background-color: #ffffff;
 }
 
+/*******************PARTIALS*******************/
 
+.terms-box {
+  min-width: 300px;
+  font-family: "Montserrat";
+}
 
+.terms-text {
+  height: 400px;
+}
 
 /*******************FOOTER*******************/
 

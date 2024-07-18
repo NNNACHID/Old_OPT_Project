@@ -10,12 +10,12 @@ class Campaign(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     description = models.TextField(verbose_name=_("Description"), null=True, blank=True)
-    min_price = models.IntegerField(
-        default=60
-    )
-    max_price = models.IntegerField(
-        default=5000
-    )
+    # min_price = models.IntegerField(
+    #     default=60
+    # )
+    # max_price = models.IntegerField(
+    #     default=5000
+    # )
     is_open = models.BooleanField(
         default=True,
         ),
@@ -48,14 +48,13 @@ class CampaignCollaboratorRequest(models.Model):
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
     collaborator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     accepted = models.BooleanField(default=False)
-    
+    message = models.TextField(verbose_name=_("Message"), null=True, blank=True)
+
     def accept(self):
         self.accepted = True
+        self.campaign.add_collaborator(self.collaborator)
         self.save()
-
-    def decline(self):
-        self.campaign.remove_collaborator(self.collaborator)
         self.delete()
 
-class CampaignPayment(models.Model):
-    pass
+    def decline(self):
+        self.delete()

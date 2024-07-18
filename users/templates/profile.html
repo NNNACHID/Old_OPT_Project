@@ -5,8 +5,8 @@
 <div class="container content-container text-center">
     <div class="row mt-5 mb-3 justify-content-center p-1">
         <div class="col-md mt-5 p-1">
-            <div class="card shadow-lg border-0 rounded-5">
-                <img src="{{ profile.banner.url }}" class="card-img-top banner rounded-top-5" alt="...">
+            <div class="card shadow-lg border-0 rounded-4">
+                <img src="{{ profile.banner.url }}" class="card-img-top banner rounded-top-4" alt="...">
                 <img src="{{ profile.profile_picture.url }}" alt="img-thumbnail"
                     class="img-thumbnail rounded-circle position-absolute top-50 start-50 translate-middle"
                     id="profile_picture">
@@ -71,10 +71,10 @@
                     <p class="card-text mt-2">{{profile.short_description}}</p>
                     {% endif %}
                     {% if profile.user != user %}
-                    <a class="btn collaboration-button rounded-4 shadow-sm" type="button"
+                    <a class="btn collaboration-button rounded-3 shadow-sm" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
                     <br>
-                    <a class="btn collaboration-button rounded-4 shadow-sm mt-2" type="button"
+                    <a class="btn collaboration-button rounded-3 shadow-sm mt-2" type="button"
                             href="{% url 'campaigns:campaigns_list' profile.user.pk %}">Campagnes</a>
                     {% endif %}
                     <div></div>
@@ -98,9 +98,9 @@
                         Je suis une marque
                     </button> -->
                     {% if profile.user != user %}
-                    <a class="btn collaboration-button rounded-4 shadow-sm my-1 mx-2" type="button"
+                    <a class="btn collaboration-button rounded-3 shadow-sm my-1 mx-2" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis une marque</a>
-                    <a class="btn collaboration-button rounded-4 shadow-sm my-1 mx-2" type="button"
+                    <a class="btn collaboration-button rounded-3 shadow-sm my-1 mx-2" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis un createur</a>
                     {% endif %}
                     <!-- <div class="collapse" id="collapseExample">

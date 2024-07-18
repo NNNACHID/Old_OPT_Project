@@ -1,25 +1,53 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head %}
+{{ wizard.form.media }}
+{% endblock %}
 
 {% block content %}
-<div class="container mt-5 p-4">
-    <div
-        class="row justify-content-center align-items-center align-self-center rounded-4  mt-5 campaigns-container p-4">
-        <div>
-            <a class="text-decoration-none" href="{% url 'campaigns:campaigns_list' campaign_page_user.pk %}">Retour</a>
+<div class="container content-container d-flex justify-content-center align-content-center mt-3 pt-5">
+    <div class="col-md-6 border-0 rounded-5 shadow p-3 box-area mx-1 my-5">
+        <div class="campaign-creation-card-header p-3 rounded-4 mb-1">
+            <h2 class="ml-2 text-decoration-underline fw-bold">Demande de participation</h2>
+            <p>Suivez les étapes et envoyer votre demande pour participer à la campagne !</p>
         </div>
-        <form method="post" class="p-5 text-center">
-            <h2>Budget campagne</h2>
-            <br>
+        <br>
+        <p class="text-center">Étape {{ wizard.steps.step1 }} sur {{ wizard.steps.count }}</p>
+        <form action="" method="post" class="mt-5">
             {% csrf_token %}
-            <div class="input-group mb-3 d-flex justify-content-center">
-                {{ form }}
-                <p id="rangeValue">300</p>
-            </div>
-            <p>Vous avez sélectionné un prix de: EUR</p>
-            <!-- <p id="rangeValue">300</p> -->
-            <div class="mb-3 d-flex justify-content-center ">
-                <button type="submit" class="btn text-decoration-none register-button rounded">Valider</button>
-            </div>
+            <table>
+                {{ wizard.management_form }}
+                {% if wizard.form.forms %}
+                {{ wizard.form.management_form }}
+                {% for form in wizard.form.forms %}
+                {{ form|crispy }}
+                {% endfor %}
+                {% else %}
+                {% if wizard.steps.current == '1' %}
+                {% include 'partials/terms_of_service.html' %}
+                {{ form|crispy }}
+                {% else %}
+                {{ wizard.form|crispy }}
+                {% endif %}
+                {% endif %}
+            </table>
+            {% if wizard.steps.current == wizard.steps.last %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"
+                class="btn text-decoration-none campaign-creation-button rounded">{% translate "prev step"%}</button>
+            <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Valider !</button>
+            {% else %}
+            {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"
+                class="btn text-decoration-none campaign-creation-button rounded">{% translate "prev step"%}</button>
+            <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Étape
+                suivante</button>
+            {% else %}
+            <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Étape
+                suivante</button>
+            {% endif %}
+            {% endif %}
         </form>
     </div>
 </div>

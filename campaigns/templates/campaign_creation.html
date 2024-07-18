@@ -4,8 +4,8 @@
 
 {% block head %}
 {{ wizard.form.media }}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.min.js"></script>
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.2/nouislider.min.js"></script> -->
 {% endblock %}
 
 {% block content %}
@@ -26,21 +26,14 @@
                 {{ form|crispy }}
                 {% endfor %}
                 {% else %}
-                {{ wizard.form|crispy }}
+                {% if wizard.steps.current == '2' %}
+                    {% include 'partials/terms_of_service.html' %}
+                    {{ form|crispy }}
+                {% else %}
+                    {{ wizard.form|crispy }}
+                {% endif %}
                 {% endif %}
             </table>
-            {% if wizard.steps.current == '2' %}
-            <div class="row mx-5">
-                <h6 class="text-center">Définissez une fourchette de prix :</h6>
-                <div class="d-flex justify-content-between">
-                    <span id="price-min-value">200</span>  <span id="price-max-value">800</span>
-                </div>
-                <div class="mb-5" id="price-range"></div>
-                <!-- Ajout des champs cachés -->
-                <!-- <input type="hidden" id="id_price_min" name="min_price" value="200">
-                <input type="hidden" id="id_price_max" name="max_price" value="800"> -->
-            </div>
-            {% endif %}
             {% if wizard.steps.current == wizard.steps.last %}
             <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"
                 class="btn text-decoration-none campaign-creation-button rounded">{% translate "prev step"%}</button>
@@ -61,7 +54,7 @@
 
 {% block scripts %}
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+   /* document.addEventListener("DOMContentLoaded", function () {
             var priceRangeSlider = document.getElementById('price-range');
 
             noUiSlider.create(priceRangeSlider, {
@@ -91,6 +84,6 @@
             var values = priceRangeSlider.noUiSlider.get();
             priceMinValue.textContent = Math.round(values[0]);
             priceMaxValue.textContent = Math.round(values[1]);
-        }); 
+        }); */
 </script>
 {% endblock %}
