@@ -16,12 +16,24 @@ class Campaign(models.Model):
     # max_price = models.IntegerField(
     #     default=5000
     # )
-    is_open = models.BooleanField(
-        default=True,
+    is_open = (
+        models.BooleanField(
+            default=True,
         ),
-    campaign_creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='created_campaigns')
+    )
+    campaign_creator = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="created_campaigns"
+    )
     collaborators = models.ManyToManyField(
         CustomUser, related_name="campaigns_participated"
+    )
+    partner = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="campaign_partner",
+        limit_choices_to={"user_type": "creator"},
+        null=True,
+        blank=True
     )
 
     class Meta:
