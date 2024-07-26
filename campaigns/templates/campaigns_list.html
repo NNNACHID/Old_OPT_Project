@@ -17,6 +17,12 @@
                         <a class="text-decoration-none" aria-current="page" href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de
                             collaboration</a>
                     </li>
+                    {% if user.user_type == "advertiser" %}
+                    <li class="nav-item my-2">
+                        <a class="text-decoration-none" aria-current="page" href="{% url 'campaigns:partner_requests_list' %}">Demandes de
+                            partenariat</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item my-2">
                         <a class="text-decoration-none" href="{% url 'campaigns:campaign_creation' %}">Créer une campagne</a> 
                     </li>
@@ -25,7 +31,7 @@
             </div>
             <div class="col-md-10">
                 {% for campaign_data in campaigns_with_collaborators %}
-                <div class="card ms-4 mb-2 campaigns-cards rounded-4 shadow-lg">
+                <div class="card ms-4 mb-5 campaigns-cards rounded-4 shadow-lg">
                     <div class="card-body campaign-card-body text-center rounded-top-4">
                         <h3 class="text-capitalize fw-bolder text-start m-0">{{ campaign_data.campaign.name }}</h3>
                         <p class="ms-1 text-start">Createur : {{ campaign_data.campaign.campaign_creator }}</p>

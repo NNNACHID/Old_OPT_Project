@@ -10,12 +10,6 @@ class Campaign(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     description = models.TextField(verbose_name=_("Description"), null=True, blank=True)
-    # min_price = models.IntegerField(
-    #     default=60
-    # )
-    # max_price = models.IntegerField(
-    #     default=5000
-    # )
     is_open = (
         models.BooleanField(
             default=True,
@@ -31,7 +25,7 @@ class Campaign(models.Model):
         CustomUser,
         on_delete=models.CASCADE,
         related_name="campaign_partner",
-        limit_choices_to={"user_type": "creator"},
+        limit_choices_to={"user_type": "advertiser"},
         null=True,
         blank=True
     )
@@ -54,6 +48,12 @@ class Campaign(models.Model):
 
     def remove_collaborator(self, collaborator):
         self.collaborators.remove(collaborator)
+        
+class CampaignPartnerRequest(models.Model):
+    campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE)
+    partner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('accepted', 'Accepted'), ('rejected', 'Rejected')], default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class CampaignCollaboratorRequest(models.Model):

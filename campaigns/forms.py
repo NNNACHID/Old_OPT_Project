@@ -49,6 +49,20 @@ class CampaignCreationStepTwoForm(forms.ModelForm):
 
 class CampaignCreationStepThreeForm(forms.Form):
 
+    partner = forms.ModelChoiceField(
+        queryset=CustomUser.objects.filter(user_type="advertiser"),
+        widget=forms.Select(attrs={"class": "form-select"}),
+        required=False,
+        label="Partenaire",
+    )
+
+    class Meta:
+        model = Campaign
+        fields = ["partner"]
+
+
+class CampaignCreationStepFourForm(forms.Form):
+
     accept_legal_terms = forms.BooleanField(
         widget=forms.CheckboxInput(
                 attrs={"class": "form-check-input", "type": "radio"}

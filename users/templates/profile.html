@@ -2,16 +2,18 @@
 
 {% block content %}
 {% load static %}
-<div class="container content-container text-center">
-    <div class="row mt-5 mb-3 justify-content-center p-1">
-        <div class="col-md mt-5 p-1">
-            <div class="card shadow-lg border-0 rounded-4">
-                <img src="{{ profile.banner.url }}" class="card-img-top banner rounded-top-4" alt="...">
-                <img src="{{ profile.profile_picture.url }}" alt="img-thumbnail"
-                    class="img-thumbnail rounded-circle position-absolute top-50 start-50 translate-middle"
-                    id="profile_picture">
-                <div class="card-body mt-5 special-color">
-                    <h5 class="card-title">{{profile.user.username}}</h5>
+<div class="container content-container text-center pt-5">
+    <div class="row pt-3">
+        <div class="col">
+            <div class="card shadow-lg border-0 rounded-3 mb-3" id="profile-card">
+                <div class="profile-banner">
+                    <img src="{{ profile.banner.url }}" class="rounded-top-3" alt="profile-banner">
+                </div>
+                <div class="profile-picture">
+                    <img src="{{ profile.profile_picture.url }}" class="z-1 position-relative rounded-circle d-block mx-auto img-thumbnail border-0 shadow" alt="profile-picture">
+                </div>
+                <div class="profile-content p-3">
+                    <h5 class="card-title text-capitalize">{{profile.user.username}}</h5>
                     <div class="row justify-content-center g-0">
                         {% if profile.instagram_url %}
                         <div class="col social-logo-container">
@@ -20,9 +22,8 @@
                             </a>
                         </div>
                         {% else %}
-                            <div class="col social-logo-container-blank">
-                                
-                            </div>
+                        <div class="col social-logo-container-blank">
+                        </div>
                         {% endif %}
                         {% if profile.x_url %}
                         <div class="col social-logo-container">
@@ -75,7 +76,7 @@
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
                     <br>
                     <a class="btn collaboration-button rounded-3 shadow-sm mt-2" type="button"
-                            href="{% url 'campaigns:campaigns_list' profile.user.pk %}">Campagnes</a>
+                        href="{% url 'campaigns:campaigns_list' profile.user.pk %}">Campagnes</a>
                     {% endif %}
                     <div></div>
                 </div>
@@ -84,14 +85,14 @@
     </div>
     <div class="row mb-5">
         <div class="col-md-9 mb-3" id="main-description">
-            <div class="card border-0 shadow rounded-4 ">
+            <div class="card border-0 shadow rounded-3">
                 <div class="card-body special-color">
                     {% if profile.main_description %}
                     <p class="card-text">{{profile.main_description}}</p>
                     {% else %}
-                        {% if profile.user == user %}
-                            <p class="card-text">Remplissez votre description !</p>
-                        {% endif %}
+                    {% if profile.user == user %}
+                    <p class="card-text mt-5 fs-1 fw-bolder">Remplissez votre description !</p>
+                    {% endif %}
                     {% endif %}
                     <!-- <button class="btn rate-button rounded-4 my-1" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -99,9 +100,11 @@
                     </button> -->
                     {% if profile.user != user %}
                     <a class="btn collaboration-button rounded-3 shadow-sm my-1 mx-2" type="button"
-                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis une marque</a>
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je
+                        suis une marque</a>
                     <a class="btn collaboration-button rounded-3 shadow-sm my-1 mx-2" type="button"
-                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je suis un createur</a>
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je
+                        suis un createur</a>
                     {% endif %}
                     <!-- <div class="collapse" id="collapseExample">
                         <div class="card card-body border-0">
@@ -127,11 +130,12 @@
             </div>
         </div>
         <div class="col-md-3 mb-3" id="advertisers-content">
-            <div class="card border-0 shadow rounded-4 mb-5 ">
+            <div class="card border-0 shadow rounded-3 mb-5 ">
                 <div class="card-body">
                     <h1 class="publireportage-title">OPT.</h1>
-                    <p class="fw-bold p-3 publireportage-text">Découvrez la première plateforme de collaborations impactantes, où les créateurs de contenu, les annonceurs et les
-                    associations se réunissent pour une cause commune.</p>
+                    <p class="fw-bold p-3 publireportage-text">Découvrez la première plateforme de collaborations
+                        impactantes, où les créateurs de contenu, les annonceurs et les
+                        associations se réunissent pour une cause commune.</p>
                 </div>
             </div>
         </div>

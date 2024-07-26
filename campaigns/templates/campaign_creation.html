@@ -26,7 +26,7 @@
                 {{ form|crispy }}
                 {% endfor %}
                 {% else %}
-                {% if wizard.steps.current == '2' %}
+                {% if wizard.steps.current == '3' %}
                     {% include 'partials/terms_of_service.html' %}
                     {{ form|crispy }}
                 {% else %}
@@ -54,36 +54,6 @@
 
 {% block scripts %}
 <script>
-   /* document.addEventListener("DOMContentLoaded", function () {
-            var priceRangeSlider = document.getElementById('price-range');
-
-            noUiSlider.create(priceRangeSlider, {
-                start: [200, 800],
-                connect: true,
-                range: {
-                    'min': 0,
-                    'max': 1000
-                }
-            });
-
-            var priceMinValue = document.getElementById('price-min-value');
-            var priceMaxValue = document.getElementById('price-max-value');
-            var priceMinInput = document.getElementById('id_price_min');
-            var priceMaxInput = document.getElementById('id_price_max');
-
-            priceRangeSlider.noUiSlider.on('update', function (values, handle) {
-                if (handle) {
-                    priceMaxValue.textContent = Math.round(values[handle]);
-                    priceMaxInput.value = Math.round(values[handle]);
-                } else {
-                    priceMinValue.textContent = Math.round(values[handle]);
-                    priceMinInput.value = Math.round(values[handle]);
-                }
-            });
-
-            var values = priceRangeSlider.noUiSlider.get();
-            priceMinValue.textContent = Math.round(values[0]);
-            priceMaxValue.textContent = Math.round(values[1]);
-        }); */
+   $("#id_2-partner").select2();
 </script>
 {% endblock %}

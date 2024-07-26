@@ -17,6 +17,10 @@
                 <p>Date de fin: {{ campaign.end_date }}</p> -->
                 <h3 class="text-capitalize fw-bolder text-start m-0">{{ campaign.name }}</h3>
                 <p class="ms-1 text-start">Createur : {{ campaign.campaign_creator }}</p>
+                {% if campaign.partner != None %}
+                <p class="ms-1 text-start">Partenaire : {{ campaign.partner }}</p>
+                {% else %}
+                {% endif %}
                 <div class="d-flex mt-6 fw-bold">
                     <p class=" me-5">Date de début : {{ campaign.start_date}} </p>  
                     <p>Date de de fin : {{ campaign.end_date}} </p>
@@ -29,10 +33,14 @@
                 <p class="text-start">{{ campaign.description }}</p>
             </div>
             <div class="campaigns-card-footer rounded-bottom-4 pt-3 ps-3">
-                {% if user == campaign_page_user %}
-                    <div class="my-4"></div>
+                {% if user.user_type == "creator" %}
+                    {% if user == campaign.campaign_creator or user in collaborators %}
+                        <div class="my-4"></div>
+                    {% else %}
+                    <a class="btn request-campaign-button ms-2 mb-2" href="{% url 'campaigns:join_campaign' campaign.pk campaign_page_user.pk %}" role="button">Rejoindre cette campagne</a>
+                    {% endif %}
                 {% else %}
-                <a class="btn request-campaign-button ms-2 mb-2" href="{% url 'campaigns:join_campaign' campaign.pk campaign_page_user.pk %}" role="button">Rejoindre cette campagne</a>
+                    <div class="my-4"></div>
                 {% endif %}
             </div>
         </div>

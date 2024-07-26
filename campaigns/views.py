@@ -13,34 +13,44 @@ from formtools.wizard.views import SessionWizardView
 CREATION_FORMS = [
     CampaignCreationStepOneForm,
     CampaignCreationStepTwoForm,
-    CampaignCreationStepThreeForm
+    CampaignCreationStepThreeForm,
+    CampaignCreationStepFourForm,
 ]
 
-JOINING_FORMS = [
-    CampaignJoiningStepOneForm,
-    CampaignJoiningStepTwoForm
-]
+JOINING_FORMS = [CampaignJoiningStepOneForm, CampaignJoiningStepTwoForm]
 
 
 class CampaignCreationWizardView(SessionWizardView):
     form_list = CREATION_FORMS
     template_name = "campaign_creation.html"
 
+    # def get_form_initial(self, step):
+    #     initial = super().get_form_initial(step)
+    #     partner_id = self.kwargs.get("partner_id")
+    #     if partner_id and step == "2":
+    #         initial["collaborators"] = [collaborator_id]
+    #     return initial
+
     def done(self, form_list, **kwargs):
+        pk = self.request.user.pk
         form_data = [form.cleaned_data for form in form_list]
         campaign = Campaign(
             name=form_data[0]["name"],
             start_date=form_data[0]["start_date"],
             end_date=form_data[0]["end_date"],
-            description=form_data[1]["description"], 
-            # min_price=form_data[2]["min_price"],
-            # max_price=form_data[2]["max_price"],
+            description=form_data[1]["description"],
+            partner=form_data[2]["partner"],
             campaign_creator=self.request.user,
         )
-        
         campaign.save()
+        partner_request = CampaignPartnerRequest.objects.create(
+            campaign=campaign, partner=campaign.partner
+        )
+
+        partner_request.save()
         messages.success(self.request, "Campagne créée avec succès!")
-        return redirect("home")
+        return redirect("campaigns:campaigns_list", pk)
+
 
 class CampaignJoiningWizardView(SessionWizardView):
     form_list = JOINING_FORMS
@@ -50,19 +60,20 @@ class CampaignJoiningWizardView(SessionWizardView):
         form_data = [form.cleaned_data for form in form_list]
         collaboration_request = CampaignCollaboratorRequest(
             message=form_data[0]["message"],
-            campaign=self.kwargs.get('campaign'),
-            collaborator=self.request.user
+            campaign=self.kwargs.get("campaign"),
+            collaborator=self.request.user,
         )
-        
+
         collaboration_request.save()
         messages.success(self.request, "Demande de participation envoyer !")
         return redirect("home")
 
 
 @login_required(login_url="users:login")
-def create_campaign(request, collaborator_id=None):
+def create_campaign(request):
     wizard_view = CampaignCreationWizardView.as_view()
-    return wizard_view(request, collaborator_id=collaborator_id)
+    return wizard_view(request)
+
 
 @login_required
 def join_campaign(request, campaign_pk, campaign_user_pk):
@@ -71,6 +82,7 @@ def join_campaign(request, campaign_pk, campaign_user_pk):
     campaign_page_user = get_object_or_404(CustomUser, pk=campaign_user_pk)
     wizard_view = CampaignJoiningWizardView.as_view()
     return wizard_view(request, campaign=campaign)
+
 
 @login_required(login_url="users:login")
 def get_campaigns_list(request, pk):
@@ -157,6 +169,17 @@ def get_campaign_page(request, campaign_pk, campaign_user_pk):
     }
     return render(request, "campaign.html", context)
 
+@login_required(login_url="users:login")
+def campaign_partner_requests(request):
+    user = request.user
+    partner_requests = CampaignPartnerRequest.objects.filter(partner=request.user, status='pending')
+
+    context = {
+        "requests": partner_requests,
+        "campaign_page_user": user
+    }
+    print(partner_requests)
+    return render(request, "partner_requests_list.html", context)
 
 @login_required(login_url="users:login")
 def campaign_collaborator_requests(request):
@@ -205,7 +228,6 @@ def campaign_collaborator_requests(request):
 #     messages.info(request, "Paiement éffectué !")
 #     # request_obj.accept()
 #     return redirect(checkout_session.url)
-
 
 @login_required(login_url="users:login")
 def accept_campaign_collaborator_request(request, request_id):
