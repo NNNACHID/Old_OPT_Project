@@ -3,27 +3,33 @@
 {% block content %}
 <div class="container content-container mt-5 p-5">
     <div class="card-container row justify-content-center rounded-3 mt-5 pt-4">
-        {% for profile in profiles %}
         <div class="row justify-content-center">
             <div class="col-md-4">
+                <div class="search-user my-5">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search">
+                    </form>
+                </div>
+                {% for profile in profiles %}
                 <a href="{% url 'users:profile' profile.user.pk %}" class="text-decoration-none">
-                    <div class="user-card d-flex align-items-start border-5 rounded-3 p-1">
+                    <div class="user-card d-flex align-items-start border-5 rounded-3 p-1 mb-3">
                         <div class="user-picture"><img src="{{ profile.profile_picture.url}}" alt="img-thumbnail"
                                 class="rounded-circle user-thumbnail h-25 ms-2 mt-2">
                         </div>
                         <div class="user-info">
-                            <h5 class="fw-bold fst-italic mt-2">{{ profile.user.username }}</h5>
+                            <h5 class="fw-bold fst-italic mt-2 text-capitalize">{{ profile.user.username }}</h5>
                             {% if profile.short_description != None %}
                             <span class="pb-3">{{ profile.short_description }}</span>
                             {% endif %}
                         </div>
                     </div>
                 </a>
+                {% empty %}
+                <p class="text-center">Aucuns résultats pour le moment :( ...</p>
+                {% endfor %}
             </div>
         </div>
-        {% empty %}
-        <p>No users found</p>
-        {% endfor %}
+
     </div>
 </div>
 {% endblock %}

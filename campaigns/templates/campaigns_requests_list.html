@@ -12,18 +12,21 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-6">
             {% for request in requests %}
-            <a href="{% url 'campaigns:campaign_page' campaign_pk=request.campaign.pk campaign_user_pk=campaign_page_user.pk %}" class="text-decoration-none">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 mb-3 rounded-5 shadow text-center campaign-card-body p-3 text-decoration-none">
-                        <h2 class="text-decoration-none">Demande de participation n° {{ request.id }}</h2>
-                        <h5 class="text-decoration-none">Émetteur de la demande:  {{ request.collaborator }}</h5>
-                        <a href="{% url 'campaigns:accept_campaign_collaborator_request' request.id %}" class="btn request-campaign-button shadow-sm mr-2">Accepter</a>
-                        <a href="{% url 'campaigns:refuse_campaign_collaborator_request' request.id %}" class="btn request-campaign-button shadow-sm ml-2">Refuser</a>
-                    </div>
+            <div class="card my-2 rounded-4 mb-4 request-card shadow">
+                <div class="card-body rounded-top-4 ">
+                    <h3 class="text-decoration-none fw-bold">Demande de participation n° {{ request.id }}</h3>
+                    <h6 class="text-decoration-none">Émetteur de la demande: {{ request.collaborator }}</h6>
+                    <!-- <a href="{% url 'campaigns:campaign_page' campaign_pk=request.campaign.pk campaign_user_pk=campaign_page_user.pk %}">Détail</a> -->
                 </div>
-            </a>
+                <div class="rounded-bottom-4 pt-2 pb-3 ps-3 d-flex justify-content-around ">
+                    <a href="{% url 'campaigns:accept_campaign_collaborator_request' request.id %}"
+                        class="btn accept-request-button shadow-sm mr-2">Accepter</a>
+                    <a href="{% url 'campaigns:refuse_campaign_collaborator_request' request.id %}"
+                        class="btn decline-request-button shadow-sm ml-2">Refuser</a>
+                </div>
+            </div>
             {% empty %}
             <p>Aucune demandes pour le moment</p>
             {% endfor %}

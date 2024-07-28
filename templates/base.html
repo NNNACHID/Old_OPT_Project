@@ -11,10 +11,12 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="icon" href="{% static './images/title_logo_opt.png' %}" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://unpkg.com/htmx.org@1.9.11"
         integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0"
         crossorigin="anonymous"></script>
+    <title>OPT.</title>
     {% block head %}
     {% endblock %}
     
@@ -69,13 +71,19 @@
                             class="rounded-circle me-auto my-1">
                     </span>
                 </button>
-                <div class="dropdown-menu dropdown-menu-end p-3">
+                <div class="dropdown-menu dropdown-menu-end p-2">
                     <ul class="list-unstyled">
-                        <li class="nav-item"><a class="text-decoration-none text-uppercase" href="{% url 'users:profile' user.pk %}">{{user.username}}</a></li>
+                        <li class="nav-item"><a class="text-decoration-none text-uppercase fw-bolder" href="{% url 'users:profile' user.pk %}">{{user.username}}</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li class-="nav-item"><a class="text-decoration-none"
                                 href="{% url 'users:account' %}">Paramètres</a>
                         </li>
                         <li class-="nav-item"><a class="text-decoration-none" href="{% url 'campaigns:campaigns_list' user.pk%}">Campagnes</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
                         </li>
                         <li class-="nav-item"><a class="text-decoration-none"
                                 href="{% url 'users:logout' %}">Déconnexion</a></li>

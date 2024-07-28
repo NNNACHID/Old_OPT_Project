@@ -181,6 +181,12 @@ def campaign_partner_requests(request):
     print(partner_requests)
     return render(request, "partner_requests_list.html", context)
 
+
+
+
+
+
+
 @login_required(login_url="users:login")
 def campaign_collaborator_requests(request):
     user = request.user

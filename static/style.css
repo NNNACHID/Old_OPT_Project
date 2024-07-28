@@ -103,11 +103,27 @@ body {
 }
 .login-dropdown .dropdown-menu {
   background-color: #ffffff;
+  width: 210px;
 }
 
 .login-dropdown a {
   color: #091c0f;
+  padding: 6px;
 }
+
+.login-dropdown ul {
+  margin-bottom: 0;
+}
+
+/* .login-dropdown  li a{
+  border-radius: 6px;
+} */
+
+.login-dropdown  a:hover{
+  background-color: #eeeeee;
+  border-radius: 6px;
+}
+
 
 .login-button {
   background-color: #59ef99;
@@ -290,16 +306,43 @@ main {
 }
 
 .custom-form-card {
-  background-color: #091c0f;
-  color: #59ef99;
+  background-color: #ffffff;
+  color: #000000;
 }
 
-.custom-form-card input:focus,
-textarea:focus {
-  box-shadow: none !important;
-  border: #1fb154 3px solid !important;
-  padding: 12px;
+.custom-form-card input,
+.custom-form-card textarea{
+  background-color: #eeeeee;
 }
+
+
+.custom-form-card input:focus,
+.custom-form-card textarea:focus {
+  box-shadow: none !important;
+  border: #1fb154 1px solid !important;
+  background-color: #eeeeee;
+}
+
+.custom-form-card input[type=file]::file-selector-button {
+  background: #59ef99;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+}
+
+.custom-form-card input[type=file]::file-selector-button:hover {
+  background-color: #1fb154 !important;
+}
+
+.custom-form-card input[type=file]{
+  background: #ffffff;
+  border: none !important;
+}
+
+.custom-form-card input[type=file]:focus {
+  border: none;
+}
+
 
 .selection li {
   background-color: #22c45e !important;
@@ -328,6 +371,17 @@ textarea:focus {
 .card-container {
   background-color: #ffffff;
   min-height: 80vh;
+}
+
+.card-container input[type=search] {
+  border-radius: 21px;
+  min-width: 100%;
+  background-color: #eeeeee;
+}
+
+.card-container input[type=search]:focus {
+  box-shadow: none;
+  border: none;
 }
 
 .user-card {
@@ -554,6 +608,36 @@ textarea:focus {
   color: #58926d !important;
   background-color: #ffffff;
 }
+
+.request-card{
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.accept-request-button {
+  color:#ffffff !important;
+  background-color: #22c45e;
+  transition: 0.5s ease-in-out;
+}
+
+.accept-request-button:hover {
+  color:#22c45e !important;
+  background-color: #ffffff;
+  transition: 0.5s ease-in-out;
+}
+
+.decline-request-button {
+  color:#ffffff !important;
+  background-color: #ec1a1a;
+  transition: 0.5s ease-in-out;
+}
+
+.decline-request-button:hover {
+  color:#ec1a1a !important;
+  background-color: #ffffff;
+  transition: 0.5s ease-in-out;
+}
+
 
 /*******************PARTIALS*******************/
 

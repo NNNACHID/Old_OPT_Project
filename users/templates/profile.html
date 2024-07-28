@@ -2,8 +2,8 @@
 
 {% block content %}
 {% load static %}
-<div class="container content-container text-center pt-5">
-    <div class="row pt-3">
+<div class="container content-container text-center pt-5 mt-5">
+    <div class="row pt-3 mt-5">
         <div class="col">
             <div class="card shadow-lg border-0 rounded-3 mb-3" id="profile-card">
                 <div class="profile-banner">
@@ -13,7 +13,7 @@
                     <img src="{{ profile.profile_picture.url }}" class="z-1 position-relative rounded-circle d-block mx-auto img-thumbnail border-0 shadow" alt="profile-picture">
                 </div>
                 <div class="profile-content p-3">
-                    <h5 class="card-title text-capitalize">{{profile.user.username}}</h5>
+                    <h5 class="card-title text-capitalize fs-2">{{profile.user.username}}</h5>
                     <div class="row justify-content-center g-0">
                         {% if profile.instagram_url %}
                         <div class="col social-logo-container">
@@ -69,14 +69,15 @@
                         {% endif %}
                     </div>
                     {% if profile.short_description != None %}
-                    <p class="card-text mt-2">{{profile.short_description}}</p>
+                    <p class="card-text mt-2 fs-5">{{profile.short_description}}</p>
                     {% endif %}
                     {% if profile.user != user %}
-                    <a class="btn collaboration-button rounded-3 shadow-sm" type="button"
-                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a>
+                    <a class="btn collaboration-button rounded-4 shadow-sm fs-5 fw-bold p-3 text-uppercase" type="button"
+                        href="{% url 'campaigns:campaigns_list' profile.user.pk %}">Collaborer</a>
+                    <!-- <a class="btn collaboration-button rounded-4 shadow-sm fs-5 fw-bold p-3 text-uppercase" type="button"
+                        href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a> -->
                     <br>
-                    <a class="btn collaboration-button rounded-3 shadow-sm mt-2" type="button"
-                        href="{% url 'campaigns:campaigns_list' profile.user.pk %}">Campagnes</a>
+                    
                     {% endif %}
                     <div></div>
                 </div>
@@ -88,7 +89,7 @@
             <div class="card border-0 shadow rounded-3">
                 <div class="card-body special-color">
                     {% if profile.main_description %}
-                    <p class="card-text">{{profile.main_description}}</p>
+                    <p class="card-text fs-5">{{profile.main_description}}</p>
                     {% else %}
                     {% if profile.user == user %}
                     <p class="card-text mt-5 fs-1 fw-bolder">Remplissez votre description !</p>
@@ -106,6 +107,8 @@
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je
                         suis un createur</a>
                     {% endif %}
+                    <a class="btn collaboration-button rounded-3 shadow-sm mt-2" type="button"
+                                            href="{% url 'campaigns:campaigns_list' profile.user.pk %}">Campagnes</a> 
                     <!-- <div class="collapse" id="collapseExample">
                         <div class="card card-body border-0">
                             <table class="table">

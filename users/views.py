@@ -144,14 +144,14 @@ def get_profile_list_by_type(request):
         context = {
             "profiles": CustomUserProfile.objects.filter(user__user_type="creator")
         }
-        return render(request, "creators_list.html", context)
+        return render(request, "users_list.html", context)
     elif url_name == "advertisers":
         context = {
             "profiles": CustomUserProfile.objects.filter(user__user_type="advertiser")
         }
-        return render(request, "advertisers_list.html", context)
+        return render(request, "users_list.html", context)
     else:
         context = {
             "profiles": CustomUserProfile.objects.filter(user__user_type="association")
         }
-        return render(request, "associations_list.html", context)
+        return render(request, "users_list.html", context)
