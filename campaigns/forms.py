@@ -13,18 +13,18 @@ class CampaignCreationStepOneForm(forms.ModelForm):
 
         widgets = {
             "name": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": _("Nom de la campagne")}
+                attrs={"class": "form-control mt-2 mb-5", "placeholder": _("Nom de la campagne")}
             ),
             "start_date": forms.DateInput(
-                attrs={"class": "form-control", "placeholder": _("Début de la campagne")}
+                attrs={"class": "form-control mt-2", "placeholder": _("Début de la campagne")}
             ),
             "end_date": forms.DateInput(
-                attrs={"class": "form-control", "placeholder": _("Fin de la campagne")}
+                attrs={"class": "form-control mt-2 mb-5", "placeholder": _("Fin de la campagne")}
             ),
         }
 
         labels = {
-            "name": _("Nom"),
+            "name": _("Nom de la campagne"),
             "start_date": _("Début"),
             "end_date": _("Fin"),
         }

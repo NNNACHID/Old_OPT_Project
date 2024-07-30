@@ -9,15 +9,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="container content-container d-flex justify-content-center align-content-center mt-3 pt-5">
-    <div class="col-md-6 border-0 rounded-5 shadow p-3 box-area mx-1 my-5">
-        <div class="campaign-creation-card-header p-3 rounded-4 mb-1">
+<div class="container content-container d-flex justify-content-center align-content-center my-5 pt-5">
+    <div class="col-md-6 border-0 rounded-5 shadow p-3 box-area mx-1  campaign-creation">
+        <div class="campaign-creation-card-header p-3 rounded-4 mb-3">
             <h2 class="ml-2 text-decoration-underline fw-bold">Créer une campagne</h2>
-            <p>Suivez les étapes afin de créée votre campagne</p>
+            <p class="px-1">Suivez les étapes afin de créée votre campagne</p>
         </div>
         <br>
         <p class="text-center">Étape {{ wizard.steps.step1 }} sur {{ wizard.steps.count }}</p>
-        <form action="" method="post" class="mt-5">{% csrf_token %}
+        <br>
+        <form action="" method="post" class="p-3">{% csrf_token %}
             <table>
                 {{ wizard.management_form }}
                 {% if wizard.form.forms %}
@@ -34,18 +35,22 @@
                 {% endif %}
                 {% endif %}
             </table>
-            {% if wizard.steps.current == wizard.steps.last %}
-            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"
-                class="btn text-decoration-none campaign-creation-button rounded">{% translate "prev step"%}</button>
-            <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Valider !</button>
-            {% else %}
-                {% if wizard.steps.prev %}
-                    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"class="btn text-decoration-none campaign-creation-button rounded">{% translate "prev step"%}</button>
-                    <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Étape suivante</button>
+            
+            <div class="btn-box d-flex justify-content-around">
+                {% if wizard.steps.current == wizard.steps.last %}
+                <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"
+                    class="btn text-decoration-none campaign-creation-button rounded-4">{% translate "prev step"%}</button>
+                <button type="submit" class="btn text-decoration-none campaign-creation-button rounded-4">Valider !</button>
                 {% else %}
-                    <button type="submit" class="btn text-decoration-none campaign-creation-button rounded">Étape suivante</button>
+                {% if wizard.steps.prev %}
+                <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}"
+                    class="btn text-decoration-none campaign-creation-button rounded-4 mx-1">{% translate "prev step"%}</button>
+                <button type="submit" class="btn text-decoration-none campaign-creation-button rounded-4 mx-1">Étape suivante</button>
+                {% else %}
+                <button type="submit" class="btn text-decoration-none campaign-creation-button rounded-4 me-auto">Étape suivante</button>
                 {% endif %}
-            {% endif %}
+                {% endif %}
+            </div>
         </form>
     </div>
 </div>

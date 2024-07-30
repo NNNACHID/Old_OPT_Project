@@ -1,54 +1,86 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container mt-5 p-4">
-        
-        <div class="row justify-content-center align-items-center align-self-center mt-5 campaigns-container p-3">
-            <div class="col-md-2 justify-content-center align-self-start p-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item my-2">
-                        <a class="text-decoration-none" href="{% url 'campaigns:campaigns_created_list' campaign_page_user.pk %}">Campagnes créées</a>
-                    </li>
-                    <li class="nav-item my-2">
-                        <a class="text-decoration-none" href="{% url 'campaigns:campaigns_participate_list' campaign_page_user.pk %}">Campagnes participées</a>
-                    </li>
-                    {% if campaign_page_user == user %}
-                    <li class="nav-item my-2">
-                        <a class="text-decoration-none" aria-current="page" href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de
-                            collaboration</a>
-                    </li>
-                    {% if user.user_type == "advertiser" %}
-                    <li class="nav-item my-2">
-                        <a class="text-decoration-none" aria-current="page" href="{% url 'campaigns:partner_requests_list' %}">Demandes de
-                            partenariat</a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item my-2">
-                        <a class="text-decoration-none" href="{% url 'campaigns:campaign_creation' %}">Créer une campagne</a> 
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div class="col-md-10">
-                {% for campaign_data in campaigns_with_collaborators %}
-                <div class="card ms-4 mb-5 campaigns-cards rounded-4 shadow-lg">
-                    <div class="card-body campaign-card-body text-center rounded-top-4">
-                        <h3 class="text-capitalize fw-bolder text-start m-0">{{ campaign_data.campaign.name }}</h3>
-                        <p class="ms-1 text-start">Createur : {{ campaign_data.campaign.campaign_creator }}</p>
-                        <div class="d-flex mt-6 fw-bold">
-                            <p class=" me-5">Date de début : {{ campaign_data.campaign.start_date}} </p>
-                            <p>Date de de fin : {{ campaign_data.campaign.end_date}} </p>
-                        </div>
-                    </div>
-                    <div class="campaigns-card-footer rounded-bottom-4 pt-3 ps-3">
-                        <a class="btn request-campaign-button mx-auto mb-2"
-                            href="{% url 'campaigns:campaign_page' campaign_pk=campaign_data.campaign.pk campaign_user_pk=campaign_page_user.pk %}" role="button">Détail</a>
-                    </div>
+<div class="container-fluid campaign-nav d-flex justify-content-center align-items-center">
+    <div class="mt-5 py-5">
+        <h1 class="text-decoration-underline text-center mb-5 fst-italic"><a class="text-decoration-none back-link"
+                href="{% url 'campaigns:campaigns_list' campaign_page_user.pk %}">CAMPAGNES</a></h1>
+        <ul class="nav justify-content-center">
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none active"
+                    href="{% url 'campaigns:campaigns_created_list' campaign_page_user.pk %}">Campagnes
+                    créées</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none"
+                    href="{% url 'campaigns:campaigns_participate_list' campaign_page_user.pk %}">Campagnes
+                    participées</a>
+            </li>
+            {% if campaign_page_user == user %}
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none" aria-current="page"
+                    href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de
+                    collaboration</a>
+            </li>
+            {% if user.user_type == "advertiser" %}
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none" aria-current="page" href="{% url 'campaigns:partner_requests_list' %}">Demandes
+                    de
+                    partenariat</a>
+            </li>
+            {% endif %}
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none" href="{% url 'campaigns:campaign_creation' %}">Créer une campagne</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<div class="container mt-5 p-4">
+    <!-- <div class="col-md-10">
+        {% for campaign_data in campaigns_with_collaborators %}
+        <div class="card ms-4 mb-5 campaigns-cards rounded-4 shadow-lg">
+            <div class="card-body campaign-card-body text-center rounded-top-4">
+                <h3 class="text-capitalize fw-bolder text-start m-0">{{ campaign_data.campaign.name }}</h3>
+                <p class="ms-1 text-start">Createur : {{ campaign_data.campaign.campaign_creator }}</p>
+                <div class="d-flex mt-6 fw-bold">
+                    <p class=" me-5">Date de début : {{ campaign_data.campaign.start_date}} </p>
+                    <p>Date de de fin : {{ campaign_data.campaign.end_date}} </p>
                 </div>
-                {% empty %}
-                <p>Aucune campagne pour le moment</p>
-                {% endfor %}
+            </div>
+            <div class="campaigns-card-footer rounded-bottom-4 pt-3 ps-3">
+                <a class="btn request-campaign-button mx-auto mb-2"
+                    href="{% url 'campaigns:campaign_page' campaign_pk=campaign_data.campaign.pk campaign_user_pk=campaign_page_user.pk %}"
+                    role="button">Détail</a>
             </div>
         </div>
+        {% empty %}
+        <p>Aucune campagne pour le moment</p>
+        {% endfor %}
+    </div> -->
+    <div class="row justify-content-center align-items-center align-self-center border-0 mt-2 campaigns-container p-3">
+        <div class="col-md-10">
+            {% for campaign_data in campaigns_with_collaborators %}
+            <div class="card ms-4 mb-4 campaigns-cards rounded-4 shadow-lg">
+                <div class="card-body campaign-card-body text-center rounded-top-4">
+                    <h3 class="text-capitalize fw-bolder text-start m-0">{{ campaign_data.campaign.name }}</h3>
+                    <p class="ms-1 text-start">Createur : {{ campaign_data.campaign.campaign_creator }}</p>
+                    <div class="d-flex mt-6 fw-bold">
+                        <p class=" me-5">Date de début : {{ campaign_data.campaign.start_date}} </p>
+                        <p>Date de de fin : {{ campaign_data.campaign.end_date}} </p>
+                    </div>
+                </div>
+                <div class="campaigns-card-footer rounded-bottom-4 pt-3 ps-3">
+                    <a class="btn request-campaign-button mx-auto mb-2"
+                        href="{% url 'campaigns:campaign_page' campaign_pk=campaign_data.campaign.pk campaign_user_pk=campaign_page_user.pk %}"
+                        role="button">Détail</a>
+                </div>
+            </div>
+            {% empty %}
+            <p>Aucune campagne pour le moment</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 </div>
 {% endblock %}

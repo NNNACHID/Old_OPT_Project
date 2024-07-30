@@ -42,9 +42,11 @@
                 {% endif %}
             </div>
             {% endfor %}
-            <div class="mb-3 d-flex justify-content-center ">
+            <div class="mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn text-decoration-none register-button rounded">S'inscrire</button>
+                
             </div>
+            <p>Vous disposez déjà d'un compte ? <a class="text-decoration-none" href="{% url 'users:login' %}">Connectez-vous</a></p>
             </form>
         </div>
     </div>

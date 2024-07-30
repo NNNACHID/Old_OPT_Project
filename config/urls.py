@@ -24,6 +24,7 @@ from config.views import *
 
 urlpatterns = [
     path("", home, name="home"),
+    path("contact", contact, name="contact"),
     path("users/", include("users.urls")),
     path("campaigns/", include("campaigns.urls")),
     path("admin/", admin.site.urls)

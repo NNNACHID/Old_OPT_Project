@@ -106,7 +106,7 @@ class CustomUserProfileForm(forms.ModelForm):
                 attrs={"class": "form-control", "type": "file"}
             ),
             "short_description": forms.Textarea(
-                attrs={"class": "form-control", "rows": "1"}
+                attrs={"class": "form-control", "rows": "1", "maxlength": "64"}
             ),
             "main_description": forms.Textarea(
                 attrs={"class": "form-control", "rows": "3"}

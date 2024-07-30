@@ -1,24 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container-fluid campaign-nav d-flex justify-content-center align-items-center">
+    <div class="mt-5 py-5">
+        <h1 class="text-decoration-underline text-center mb-5 fst-italic"><a class="text-decoration-none back-link"
+                href="{% url 'campaigns:campaigns_list' campaign_page_user.pk %}">CAMPAGNES</a></h1>
+        <ul class="nav justify-content-center">
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none active"
+                    href="{% url 'campaigns:campaigns_created_list' campaign_page_user.pk %}">Campagnes
+                    créées</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none"
+                    href="{% url 'campaigns:campaigns_participate_list' campaign_page_user.pk %}">Campagnes
+                    participées</a>
+            </li>
+            {% if campaign_page_user == user %}
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link active-button text-decoration-none" aria-current="page"
+                    href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de
+                    participation</a>
+            </li>
+            {% if user.user_type == "advertiser" %}
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none" aria-current="page"
+                    href="{% url 'campaigns:partner_requests_list' %}">Demandes
+                    de
+                    partenariat</a>
+            </li>
+            {% endif %}
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none"
+                    href="{% url 'campaigns:campaign_creation' %}">Créer une campagne</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
 <div class="container content-container mt-5 p-4">
-
-    <div
-        class="row justify-content-center align-items-center align-self-center border-0  rounded-5 mt-5 campaigns-container p-3">
-        <div class="col-md-2 justify-content-center align-self-start p-3">
-            <ul class="nav flex-column">
-                <li class="nav-item my-2">
-                    <a class="text-decoration-none" href="{% url 'campaigns:campaigns_list' campaign_page_user.pk %}">Retour</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-6">
+    <div class="row justify-content-center align-items-center align-self-center border-0 mt-2 campaigns-container p-3">
+        <div class="col-md-8">
             {% for request in requests %}
-            <div class="card my-2 rounded-4 mb-4 request-card shadow">
+            <div class="card my-2 rounded-4 mb-5 request-card shadow">
                 <div class="card-body rounded-top-4 ">
                     <h3 class="text-decoration-none fw-bold">Demande de participation n° {{ request.id }}</h3>
                     <h6 class="text-decoration-none">Émetteur de la demande: {{ request.collaborator }}</h6>
-                    <!-- <a href="{% url 'campaigns:campaign_page' campaign_pk=request.campaign.pk campaign_user_pk=campaign_page_user.pk %}">Détail</a> -->
                 </div>
                 <div class="rounded-bottom-4 pt-2 pb-3 ps-3 d-flex justify-content-around ">
                     <a href="{% url 'campaigns:accept_campaign_collaborator_request' request.id %}"
@@ -33,4 +60,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
