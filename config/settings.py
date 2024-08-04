@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "campaigns.apps.CampaignsConfig",
     "transactions.apps.TransactionsConfig",
+    # "notifications",
     "crispy_forms",
     "crispy_bootstrap5",
     "formtools",

@@ -1,12 +1,21 @@
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import *
 
 
-# @receiver(m2m_changed, sender=Campaign.collaborators.through)
-# def create_campaign_collaborator_requests(sender, instance, action, **kwargs):
-#     if action == 'post_add':
-#         for collaborator in instance.collaborators.all():
-#             CampaignCollaboratorRequest.objects.create(
-#                 campaign=instance, collaborator=collaborator
-#             )
+
+
+# @receiver(post_save, sender=CampaignPartnerRequest)
+# def send_partner_request_notification(sender, instance, created, **kwargs):
+#     if created:
+#         partner = instance.partner
+#         campaign = instance.campaign
+        
+#         # send_mail(
+            
+#         # )
+        
+#         Notification.objects.create(
+#             user=partner,
+#             message=f"Vous avez une nouvelle demande de partnariat émise par {campaign.campaign_creator} !"
+#         )

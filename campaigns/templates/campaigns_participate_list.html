@@ -17,11 +17,6 @@
                     participées</a>
             </li>
             {% if campaign_page_user == user %}
-            <li class="nav-item mb-3">
-                <a class="nav-link campaign-nav-link text-decoration-none" aria-current="page"
-                    href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de
-                    participation</a>
-            </li>
             {% if user.user_type == "advertiser" %}
             <li class="nav-item mb-3">
                 <a class="nav-link campaign-nav-link text-decoration-none" aria-current="page"
@@ -29,10 +24,16 @@
                     de
                     partenariat</a>
             </li>
+            {% else %}
+            <li class="nav-item mb-3">
+                <a class="nav-link campaign-nav-link text-decoration-none" aria-current="page"
+                    href="{% url 'campaigns:campaigns_requests_list' %}">Demandes de
+                    collaboration</a>
+            </li>
             {% endif %}
             <li class="nav-item mb-3">
-                <a class="nav-link campaign-nav-link text-decoration-none"
-                    href="{% url 'campaigns:campaign_creation' %}">Créer une campagne</a>
+                <a class="nav-link campaign-nav-link text-decoration-none" href="{% url 'campaigns:campaign_creation' %}">Créer une
+                    campagne</a>
             </li>
             {% endif %}
         </ul>

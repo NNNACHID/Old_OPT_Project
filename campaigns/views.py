@@ -46,7 +46,6 @@ class CampaignCreationWizardView(SessionWizardView):
         partner_request = CampaignPartnerRequest.objects.create(
             campaign=campaign, partner=campaign.partner
         )
-
         partner_request.save()
         messages.success(self.request, "Campagne créée avec succès!")
         return redirect("campaigns:campaigns_list", pk)

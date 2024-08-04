@@ -21,11 +21,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from config.views import *
 
+# import notifications.urls
 
 urlpatterns = [
     path("", home, name="home"),
     path("contact", contact, name="contact"),
     path("users/", include("users.urls")),
     path("campaigns/", include("campaigns.urls")),
-    path("admin/", admin.site.urls)
+    # path("inbox/notifications/", include(notifications.urls, namespace='notifications')),
+    path("admin/", admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
