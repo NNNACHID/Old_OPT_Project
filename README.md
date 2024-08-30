@@ -10,9 +10,9 @@ __/\\\\\\\\\\\\\_______/\\\\\\\________/\\\\\\\_________________________________
         _\/////////////_______\///////________\///////_____\///___\///___\///__\//////////______\///____________\///_____\///____\///___\////////////____
 ```
 
-# OPT
+# OLD_OPT
 
-OPT est un projet Django comprenant trois applications : users, campaigns et transactions.
+Old_OPT est l'ancienne version d'un projet Django comprenant trois applications : users, campaigns et transactions.
 
 ## Prérequis
 
