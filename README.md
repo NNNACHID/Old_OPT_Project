@@ -12,7 +12,7 @@ __/\\\\\\\\\\\\\_______/\\\\\\\________/\\\\\\\_________________________________
 
 # OPT
 
-OPT est un projet Django comprenant deux applications : Users et Campaigns.
+OPT est un projet Django comprenant trois applications : users, campaigns et transactions.
 
 ## Prérequis
 
