@@ -39,7 +39,7 @@ body {
 
 /*******************NAV*******************/
 .navbar {
-  background-color: #091c0f;
+  background-color: #ffffff;
   padding: 0.6rem;
 }
 .navbar-brand {
@@ -60,12 +60,12 @@ body {
   font-weight: 700;
   font-style: normal;
   font-size: 15px;
-  color: #ffffff;
+  color: #000000;
   position: relative;
 }
 .opt-nav-link:hover,
 .opt-nav-link.active {
-  color: #dbdbdb;
+  color: #5e5e5e;
 }
 
 @media (min-width: 768px) {
@@ -427,10 +427,10 @@ main {
 
 .profile-content h5 {
   font-family: "Kanit", sans-serif;
-  font-weight: 800;
+  font-weight: 300;
 }
 
-.profile-content{
+.profile-content p {
   font-family: "Roundo", sans-serif;
   font-weight: 800;
 }
@@ -491,6 +491,8 @@ main {
 .collaboration-button {
   background-color: #59ef99;
   color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 1.5px;
 }
 
 .collaboration-button:hover {
@@ -511,11 +513,11 @@ main {
 }
 
 #main-description .card {
-  min-height: 450px;
+  min-height: 480px;
 }
 
 #advertisers-content .card {
-  min-height: 450px;
+  min-height: 480px;
 }
 
 .publireportage-title {
@@ -734,17 +736,17 @@ main {
 /*******************FOOTER*******************/
 
 footer {
-  color: #ffffff;
-  background-color: #091c0f;
+  color: #000000;
+  background-color: #ffffff;
 }
 
 footer a {
-  color: #59ef99;
+  color: #000000;
   transition: 0.3s;
 }
 
 footer a:hover {
-  color: #37db73;
+  color: #696969;
 }
 
 .footer-logo {

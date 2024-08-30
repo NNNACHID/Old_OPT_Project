@@ -10,7 +10,7 @@
                     <img src="{{ profile.banner.url }}" class="rounded-top-3" alt="profile-banner">
                 </div>
                 <div class="profile-picture">
-                    <img src="{{ profile.profile_picture.url }}" class="z-1 position-relative rounded-circle d-block mx-auto img-thumbnail border-0 shadow" alt="profile-picture">
+                    <img src="{{ profile.profile_picture.url }}" class="z-1 position-relative rounded-circle d-block mx-auto img-thumbnail border-0 " alt="profile-picture">
                 </div>
                 <div class="profile-content p-3">
                     <h5 class="card-title text-capitalize fs-2">{{profile.user.username}}</h5>
@@ -72,7 +72,7 @@
                     <p class="card-text mt-2 fs-5">{{profile.short_description}}</p>
                     {% endif %}
                     {% if profile.user != user %}
-                    <a class="btn collaboration-button rounded-4 shadow-sm fs-5 fw-bold p-3 text-uppercase" type="button"
+                    <a class="btn collaboration-button rounded-3 shadow-sm" type="button"
                         href="{% url 'campaigns:campaigns_list' profile.user.pk %}">Collaborer</a>
                     <!-- <a class="btn collaboration-button rounded-4 shadow-sm fs-5 fw-bold p-3 text-uppercase" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Collaborer</a> -->
@@ -89,7 +89,7 @@
             <div class="card border-0 shadow rounded-3">
                 <div class="card-body special-color">
                     {% if profile.main_description %}
-                    <p class="card-text fs-5">{{profile.main_description}}</p>
+                    <p class="card-text mt-3 mx-5 fs-5">{{profile.main_description}}</p>
                     {% else %}
                     {% if profile.user == user %}
                     <p class="card-text mt-5 fs-1 fw-bolder">Remplissez votre description !</p>
@@ -99,14 +99,14 @@
                         data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Je suis une marque
                     </button> -->
-                    {% if profile.user != user %}
+                    <!-- {% if profile.user != user %}
                     <a class="btn collaboration-button rounded-3 shadow-sm my-1 mx-2" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je
                         suis une marque</a>
                     <a class="btn collaboration-button rounded-3 shadow-sm my-1 mx-2" type="button"
                         href="{% url 'campaigns:campaign_creation_with_collab' collaborator_id=profile.user.pk %}">Je
                         suis un createur</a>
-                    {% endif %}
+                    {% endif %} -->
                     <a class="btn collaboration-button rounded-3 shadow-sm mt-2" type="button"
                                             href="{% url 'campaigns:campaigns_list' profile.user.pk %}">Campagnes</a> 
                     <!-- <div class="collapse" id="collapseExample">
