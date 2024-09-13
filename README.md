@@ -58,15 +58,15 @@ Old_OPT est l'ancienne version d'un projet Django comprenant trois applications 
 ` http://127.0.0.1:8000/`
  
 ## Structure du projet
-* `MainApp/` : dossier principal du projet, contenant les fichiers de configuration Django.
+* `config/` : dossier principal du projet, contenant les fichiers de configuration Django.
 *     settings.py : fichier de configuration du projet.
 *     urls.py : fichier de configuration des URL du projet.
 *     wsgi.py : fichier de configuration du serveur WSGI.
-* `Users/` : application Django pour la gestion des utilisateurs.
+* `users/` : application Django pour la gestion des utilisateurs.
 *     models.py : fichier contenant les modèles de données de l'application.
 *     views.py : fichier contenant les vues de l'application.
 *     urls.py : fichier de configuration des URL de l'application.
-* `Campaigns/` : application Django pour la gestion des campagnes.
+* `campaigns/` : application Django pour la gestion des campagnes.
 *     models.py : fichier contenant les modèles de données de l'application.
 *     views.py : fichier contenant les vues de l'application.
 *     urls.py : fichier de configuration des URL de l'application.
